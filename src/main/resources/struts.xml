@@ -5,10 +5,11 @@
 <struts>
 <constant name="struts.devMode" value="true" />
 <constant name="struts.multipart.maxSize" value="10240"></constant>
+<constant name="struts.action.excludePattern" value=".*/static/.*" />
    <package name="delta" extends="struts-default">
    	 
      <action name="index">
-     	<result>/index.jsp</result>
+     	<result>/jsp/index.jsp</result>
      </action>
      
       

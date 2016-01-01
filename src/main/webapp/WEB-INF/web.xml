@@ -22,7 +22,7 @@
     <filter>
       <filter-name>struts2</filter-name>
       <filter-class>
-		org.apache.struts2.dispatcher.FilterDispatcher
+		org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
       </filter-class>
    </filter>
    
@@ -39,7 +39,10 @@
 		</listener-class>
 	</listener>
 	
+	
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>jsp/index.jsp</welcome-file>
 	</welcome-file-list>
+	
+	
 </web-app>
