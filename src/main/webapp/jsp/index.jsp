@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html ng-app="platform-list">
 <head>
-	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="<s:url value="/static/css/bootstrap.min.css" />" >
   <link rel="stylesheet" href="<s:url value="/static/css/font-awesome.min.css" />">
   <link rel="stylesheet" href="<s:url value="/static/css/style.css"/> ">
@@ -33,7 +35,7 @@
     </div>
     <footer>
       <div class="footer-container container">
-        site design / logo © 2015 Algorithm platform; user contributions licensed under cc by-sa 3.0 with attribution required
+        site design / logo Â© 2015 Algorithm platform; user contributions licensed under cc by-sa 3.0 with attribution required
       </div>
     </footer>
       <div class="modal fade" id="signupModal">

@@ -7,13 +7,35 @@
 	<constant name="struts.multipart.maxSize" value="10240"></constant>
 	<constant name="struts.action.excludePattern" value=".*/static/.*" />
 	<package name="delta" extends="struts-default">
+	
+		<interceptors>
+	        <interceptor name="authentication"
+	            class="com.delta.interceptors.AuthenticationInterceptor"></interceptor>
+	        <interceptor-stack name="authStack">
+	            <interceptor-ref name="authentication"></interceptor-ref>
+	            <interceptor-ref name="defaultStack"></interceptor-ref>
+	        </interceptor-stack>
+	    </interceptors>
+		
+		<global-results>
+		    <result name="login" type="redirect">/index</result>
+		</global-results>
 
 		<action name="index">
 			<result>/jsp/index.jsp</result>
 		</action>
 		
+		<action name="login">
+			<result>/jsp/index.jsp</result>
+		</action>
+		
 		<action name="list">
 			<result>/jsp/list.jsp</result>
+		</action>
+		
+		<action name="record">
+			<interceptor-ref name="authStack"></interceptor-ref>
+			<result>/jsp/record.jsp</result>
 		</action>
 
 
