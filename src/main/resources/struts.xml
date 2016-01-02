@@ -6,7 +6,7 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.multipart.maxSize" value="10240"></constant>
 	<constant name="struts.action.excludePattern" value=".*/static/.*" />
-	<package name="delta" extends="struts-default">
+	<package name="delta" extends="json-default">
 	
 		<interceptors>
 	        <interceptor name="authentication"
@@ -25,10 +25,6 @@
 			<result>/jsp/index.jsp</result>
 		</action>
 		
-		<action name="login">
-			<result>/jsp/index.jsp</result>
-		</action>
-		
 		<action name="list">
 			<result>/jsp/list.jsp</result>
 		</action>
@@ -37,7 +33,13 @@
 			<interceptor-ref name="authStack"></interceptor-ref>
 			<result>/jsp/record.jsp</result>
 		</action>
-
+		
+		<!-- Ajax apis -->
+		<action name="authenticate" class="com.delta.api.AuthenticationAPI">
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
 
 	</package>
 </struts>

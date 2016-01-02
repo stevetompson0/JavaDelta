@@ -54,6 +54,11 @@
     	<artifactId>spring-orm</artifactId>
     	<version>4.2.4.RELEASE</version>
     </dependency>
+    <dependency>
+    	<groupId>org.apache.struts</groupId>
+    	<artifactId>struts2-json-plugin</artifactId>
+    	<version>2.3.24.1</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>JavaDelta</finalName>
