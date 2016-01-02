@@ -3,15 +3,15 @@
 <html ng-app="platform-list">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="static/css/bootstrap.min.css">
-  <link rel="stylesheet" href="static/css/font-awesome.min.css">
-  <link rel="stylesheet" href="static/css/style.css">
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800' rel='stylesheet' type='text/css'>  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="../js/angular.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/index.js"></script>
+	<script src="/static/js/angular.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/js/index.js"></script>
 	<title>Home</title>
 </head>
 <body>

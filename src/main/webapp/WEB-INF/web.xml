@@ -45,4 +45,15 @@
 	</welcome-file-list>
 	
 	
+	<!-- deny direct access to jsp
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>SecureDesPages</web-resource-name>
+				<description>Security constraint for jsp pages</description>
+				<url-pattern>*.jsp</url-pattern>
+			</web-resource-collection>
+		<auth-constraint/>
+	</security-constraint>
+	 -->
+	
 </web-app>
