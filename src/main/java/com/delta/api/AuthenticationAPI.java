@@ -1,6 +1,6 @@
 package com.delta.api;
 
-import com.delta.model.User;
+import com.delta.model.UserInterface;
 
 import java.util.Map;
 
@@ -11,8 +11,13 @@ import com.opensymphony.xwork2.ActionSupport;
 public class AuthenticationAPI extends ActionSupport implements SessionAware {
 	
 	private static final long serialVersionUID = 1L;
-	private User user = new User();
+	// UserInterface -- dependency injected by Spring
+	private UserInterface user;  
 	private Map<String, Object> session;
+	
+	public AuthenticationAPI(UserInterface user) {
+		this.user = user;
+	}
 	
 	@Override
 	public String execute() {

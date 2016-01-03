@@ -12,6 +12,10 @@
            http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
 
     <!-- the parent application context definition for the springapp application -->
-
+	<bean id="userModel" class="com.delta.model.User" scope="prototype"/>
+	
+	<bean id="authenticationAPI" class="com.delta.api.AuthenticationAPI">
+		<constructor-arg ref="userModel" />
+	</bean>
 
 </beans>

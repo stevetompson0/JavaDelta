@@ -25,11 +25,6 @@
     	<version>3.1.0</version>
     </dependency>
     <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>4.2.3.RELEASE</version>
-    </dependency>
-    <dependency>
     	<groupId>org.hibernate</groupId>
     	<artifactId>hibernate-core</artifactId>
     	<version>5.0.5.Final</version>
@@ -59,8 +54,27 @@
     	<artifactId>struts2-json-plugin</artifactId>
     	<version>2.3.24.1</version>
     </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring</artifactId>
+    	<version>2.5.6</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.struts</groupId>
+    	<artifactId>struts2-spring-plugin</artifactId>
+    	<version>2.3.24.1</version>
+    </dependency>
   </dependencies>
-  <build>
-    <finalName>JavaDelta</finalName>
-  </build>
+	<build>
+		<finalName>JavaDelta</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
