@@ -19,7 +19,7 @@ public class AuthenticationAPI extends ActionSupport implements SessionAware, Mo
 	private UserInterface user;  
 	private Map<String, Object> session;
 	// boolean variable indicating whether authentication succeeds or fails
-	private boolean errorAuthen = false;
+	private boolean errorAuthen = true;
 	
 	public AuthenticationAPI(UserInterface user) {
 		this.user = user;
@@ -29,7 +29,7 @@ public class AuthenticationAPI extends ActionSupport implements SessionAware, Mo
 	public String execute() {
 		if (user.getUsername().equals("steve")) {
 			session.put("USER", user);
-			errorAuthen = true;
+			errorAuthen = false;
 		}
 		else {
 			return INPUT;

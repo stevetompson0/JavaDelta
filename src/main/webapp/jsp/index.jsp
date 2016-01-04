@@ -70,7 +70,7 @@
 
                     <div class="form-group" ng-class="{ 'has-error' : errorName || (signupForm.username.$invalid && !signupForm.username.$pristine) }">
                         <label>Username:</label>
-                        <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="16" required>
+                        <input type="text" id="s-username" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="16" required>
                         <p ng-show="signupForm.username.$error.minlength" class="help-block">Username is too short.</p>
                         <p ng-show="signupForm.username.$error.maxlength" class="help-block">Username is too long.</p>
                         <p ng-show="errorName" class="help-block">The username has been taken.</p>
@@ -78,12 +78,12 @@
 
                     <div class="form-group" ng-class="{ 'has-error' : signupForm.password.$invalid && !signupForm.password.$pristine }">
                         <label>Password:</label>
-                        <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="6" ng-maxlength="16" repassword required>
+                        <input type="password" id="s-password" name="password" class="form-control" ng-model="user.password" ng-minlength="6" ng-maxlength="16" repassword required>
                         <p ng-show="signupForm.password.$error.minlength" class="help-block">password is too short.</p>
                         <p ng-show="signupForm.password.$error.maxlength" class="help-block">password is too long.</p>
                     </div>
                     
-                     <div class="form-group" ng-class="{ 'has-error' :!signupForm.repassword.$pristine || (signupForm.repassword.$viewValue!=signupForm.password.$viewValue) }">
+                     <div class="form-group">
                         <label>Confirm password:</label>
                         <input type="password" name="repassword" class="form-control" ng-model="user.repassword" required>
                         <p ng-show="signupForm.repassword.$viewValue!=signupForm.password.$viewValue" class="help-block">password doesn't match</p>
@@ -91,7 +91,7 @@
 
                     <div class="form-group" ng-class="{ 'has-error' : errorEmail || (signupForm.email.$invalid && !signupForm.email.$pristine) }">
                         <label>Email</label>
-                        <input type="email" name="email" class="form-control" ng-model="user.email" required>
+                        <input type="email" id="s-email" name="email" class="form-control" ng-model="user.email" required>
                         <p ng-show="signupForm.email.$invalid && !signupForm.email.$pristine" class="help-block">Enter a valid email.</p>
                         <p ng-show="errorEmail" class="help-block">The email has been registered</p>
                     </div>
@@ -118,13 +118,13 @@
 
                     <div class="form-group" ng-class="{ 'has-error' : errorAuthen || (loginForm.username.$invalid && !loginForm.username.$pristine) }">
                         <label>Username:</label>
-                        <input type="text" name="username" class="form-control" ng-model="user.username" required>
+                        <input type="text" id="l-username" name="username" class="form-control" ng-model="user.username" required>
                          <p ng-show="errorAuthen " class="help-block">The username and password does not match.</p>
                     </div>
 
                     <div class="form-group" ng-class="{ 'has-error' : errorAuthen || (loginForm.password.$invalid && !loginForm.password.$pristine) }">
                         <label>Password:</label>
-                        <input type="password" name="password" class="form-control" ng-model="user.password" repassword required>
+                        <input type="password" id="l-password" name="password" class="form-control" ng-model="user.password" repassword required>
                     </div>
 
                     <div class="modal-footer">

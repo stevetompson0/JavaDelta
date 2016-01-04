@@ -5,11 +5,10 @@
 	userInfo = {
 		loginAs: 0, //0 as not login, 1 as student, 2 as instructor
 		username: "Wei",
-		errors:{
-			errorName: true,
-			errorEmail: true,
-			errorAuthen: true,
-		}
+		errorName: true,
+		errorEmail: true,
+		errorAuthen: true,
+		
 	};
 
 	// $http.get('/user.json').success(function(data) {
@@ -44,6 +43,11 @@
 		$scope.errorEmail = false;
 
 		$scope.submitForm = function() {
+			$scope.formData = {
+				usename: document.getElementById('s-username').value,
+				password: document.getElementById('s-password').value,
+				email: document.getElementById('s-email').value,
+			};
 			$http({
 					method: 'POST',
 					url: signup_url, // to be changed
@@ -79,6 +83,10 @@
 		$scope.errorAuthen = false;
 
 		$scope.submitForm = function() {
+			$scope.formData = {
+				username: document.getElementById('l-username').value,
+				password: document.getElementById('l-password').value,
+			};
 			$http({
 					method: 'POST',
 					url: login_url, // to be changed
@@ -91,7 +99,7 @@
 
 					if (!data.success) {
 						// if not successful, bind errors to error variables
-						$scope.errorAuthen = data.errors.errorAuthen; //true not match
+						$scope.errorAuthen = data.errorAuthen; //true not match
 	
 					} else {
 						// if success, update user data and apply
