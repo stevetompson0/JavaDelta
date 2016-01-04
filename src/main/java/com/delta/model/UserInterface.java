@@ -11,8 +11,8 @@ public interface UserInterface {
 	
     public void setPassword(String password);
     
-    public String getUserName();
+    public String getUsername();
     
-    public void setUserName(String userName);
+    public void setUsername(String username);
 
 }

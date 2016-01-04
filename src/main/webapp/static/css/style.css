@@ -134,6 +134,9 @@ footer .footer-container{
 #index-wrap nav{
 	z-index: 100;
 }
+#index-wrap nav .form-control{
+	background: rgba(255,255,255,.8);
+}
 #index-wrap .background-wrap{
 	background: rgba(255,255,255,0.1);
 	position: absolute;
@@ -178,7 +181,7 @@ footer .footer-container{
 	padding-top: 30px;
 }
 .index-func{
-	background: rgba(217, 237, 247, 0.8);
+	background: rgba(217, 237, 247, 0.7);
 	height: 180px;
 	width: 400px;
 	position: absolute;
@@ -215,9 +218,32 @@ box-shadow: 5px 5px 5px 1px rgba(175,202,9,0.48);
 #index-wrap .input-group{
 	margin-bottom: 10px;
 }
+/*#signupForm .input-group span{
+	float: left;
+}
+#signupForm .input-group input{
+	float: left;
+	width: auto;
+}*/
+/*#signupModal .btn-success{
+	position: relative;
+}
+#signupModal .btn-success input{
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}*/
 /*page: record*/
+#record-title>span{
+	outline-color: #afca09;
+}
 #record-title small{
-	padding-left: 15px;
+	margin-left: 15px;
+	cursor: pointer;
 }
 #record-title small span{
 	margin-left: 10px;
@@ -243,6 +269,45 @@ box-shadow: 5px 5px 5px 1px rgba(175,202,9,0.48);
 }
 #optionModal input{
 	margin-bottom: 5px;
+}
+.variable-range{
+	padding-top: 5px;
+}
+.variable-range div+div:before{
+	content:"~";
+	position: absolute;
+	left: -3px;
+	top: 3px;
+	font-size: 15px;
+}
+#record-body{
+	padding-bottom: 50px;
+}
+#record-body .container-fluid{
+	padding-bottom: 20px;
+}
+.formula-container{
+	height: auto;
+	padding: 10px 15px;
+}
+.formula-container li{
+	list-style: none;
+	position: relative;
+	padding-bottom: 5px;
+}
+.formula-container li span{
+	color: #bbb;
+	position: absolute;
+	top: 2px;
+	left: -7px;
+}
+.formula-container li input{
+	width: 98%;
+	margin-left: 10px;
+	border: none;
+	border-bottom: 1px solid #bbb;
+	margin-right: 15px;
+	padding: 2px 5px;
 }
 /*page: list*/
 #question-list h3{

@@ -17,7 +17,7 @@
 		};
 	}])
 
-	app.controller('ListCtrl', ['$scope', function($scope) {
+	app.controller('ListCtrl', ['$http','$scope', function($http,$scope) {
 		$scope.questions = [{
 			title: "How to test a class that has private methods, fields or inner classes",
 			desc: "How do I use JUnit to test a class that has internal private methods, fields or nested classes? It seems bad to change the access modifier for a method just to be able to run a test.",
@@ -59,6 +59,7 @@
 			$(function() {
 				$(window).scroll(function() {
 					if ($(window).scrollTop() > (30+$('#loading').offset().top - $(window).height())) {
+						
 						$scope.questions.push({
 							title: "How do I test if a string is empty in Objective C?",
 							desc: "How do I test if an NSString is empty in Objective C?",

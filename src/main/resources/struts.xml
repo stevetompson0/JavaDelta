@@ -36,7 +36,16 @@
 		
 		<!-- Ajax apis -->
 		<action name="authenticate" class="com.delta.api.AuthenticationAPI">
-			<result type="json">
+			<result name="success" type="json">
+				<param name="root">action</param>
+				<param name="excludeProperties">user.password</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+			<result name="input" type="json">
+				<param name="root">action</param>
+				<param name="includeProperties">
+					errorAuthen
+				</param>
 				<param name="excludeNullProperties">true</param>
 			</result>
 		</action>

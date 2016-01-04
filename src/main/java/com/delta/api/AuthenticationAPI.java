@@ -5,15 +5,21 @@ import com.delta.model.UserInterface;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.json.annotations.JSON;
+
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 
 
-public class AuthenticationAPI extends ActionSupport implements SessionAware {
+public class AuthenticationAPI extends ActionSupport implements SessionAware, ModelDriven<UserInterface>{
 	
 	private static final long serialVersionUID = 1L;
+	
 	// UserInterface -- dependency injected by Spring
 	private UserInterface user;  
 	private Map<String, Object> session;
+	// boolean variable indicating whether authentication succeeds or fails
+	private boolean errorAuthen = false;
 	
 	public AuthenticationAPI(UserInterface user) {
 		this.user = user;
@@ -21,10 +27,13 @@ public class AuthenticationAPI extends ActionSupport implements SessionAware {
 	
 	@Override
 	public String execute() {
-		user.setPassword("123");
-		user.setUserName("username");
-		session.put("USER", user);
-		
+		if (user.getUsername().equals("steve")) {
+			session.put("USER", user);
+			errorAuthen = true;
+		}
+		else {
+			return INPUT;
+		}
 		return SUCCESS;
 	}
 
@@ -32,9 +41,14 @@ public class AuthenticationAPI extends ActionSupport implements SessionAware {
 		this.session = session;
 	}
 	
-	// for debug use
-	public Map<String, Object> getSession() {
-		return this.session;
+	public boolean getErrorAuthen() {
+		return this.errorAuthen;
+	}
+	
+	@Override
+	@JSON(name = "user")
+	public UserInterface getModel() {
+		return this.user;
 	}
 	
 }

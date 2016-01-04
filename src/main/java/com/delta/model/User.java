@@ -3,7 +3,7 @@ package com.delta.model;
 public class User implements UserInterface {
 	
     private String password;
-    private String userName;
+    private String username;
     
     @Override
     public String getPassword() {
@@ -16,13 +16,13 @@ public class User implements UserInterface {
     }
     
     @Override
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
     
     @Override
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
      
 }

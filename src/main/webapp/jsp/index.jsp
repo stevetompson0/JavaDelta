@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+
 <!DOCTYPE html>
-<html ng-app="platform-list">
+<html ng-app="platform-index">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="<s:url value="/static/css/bootstrap.min.css" />" >
-  <link rel="stylesheet" href="<s:url value="/static/css/font-awesome.min.css" />">
-  <link rel="stylesheet" href="<s:url value="/static/css/style.css"/> ">
-  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800' rel='stylesheet' type='text/css'>  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="<s:url value="/static/js/angular.min.js" />"></script>
-	<script src="<s:url value="/static/js/bootstrap.min.js" />"></script>
-	<script src="<s:url value="/static/js/index.js" />"></script>
+	<link rel="stylesheet" href="<s:url value="static/css/bootstrap.min.css" />" >
+  	<link rel="stylesheet" href="<s:url value="static/css/font-awesome.min.css" />" >
+  	<link rel="stylesheet" href="<s:url value="static/css/style.css" /> " >
+ 	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="<s:url value="static/js/angular.min.js" />" ></script>
+	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>
+  	<script src="<s:url value="static/js/index.js" />" ></script>
 	<title>Home</title>
 </head>
 <body>
@@ -26,11 +26,21 @@
       <h2>Algorithm Practice</h2>
       <h5>Sign up or log in to check out the list of questions.</h5>
     </div>
-    <div class="index-func">
-      <ul>
+    <div class="index-func" ng-controller="FuncCtrl as func">
+      <ul ng-show="$root.info.loginAs==0">
         <li><a href="#" data-toggle="modal" data-target="#signupModal"><i class="fa fa-sign-in"></i> Sign up ></a></li>
         <li><a href="#" data-toggle="modal" data-target="#loginModal"><i class="fa fa-user"></i> Log in ></a></li>
         <li><a href="list.html"><i class="fa fa-th-list"></i> List of Questions ></a></li>
+      </ul>
+      <ul ng-show="$root.info.loginAs==1">
+        <li><a href="#" title="click to log out"><i class="fa fa-user"></i>{{$root.info.username}} ></a></li> 
+        <li><a href="library.html"><i class="fa fa-heart"></i> My Library ></a></li>
+        <li><a href="list.html"><i class="fa fa-th-list"></i> List of Questions ></a></li>
+      </ul>
+      <ul ng-show="$root.info.loginAs==2">
+        <li><a href="#" title="click to log out"><i class="fa fa-user"></i>{{$root.info.username}} ></a></li>
+        <li><a href="MyQuestions.html"><i class="fa fa-save"></i> My Questions ></a></li>
+        <li><a href="record.html"><i class="fa fa-pencil"></i> Record a Question ></a></li>
       </ul>
     </div>
     <footer>
@@ -40,67 +50,89 @@
     </footer>
       <div class="modal fade" id="signupModal">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
+          <div class="modal-content" ng-controller="SignupCtrl as signup">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title" id="myModalLabel">Sign up</h4>
             </div>
-            <div class="modal-body">
-               <div class="input-group">
-                <div class="btn-group" data-toggle="buttons">
-                  <label class="btn btn-default active">
-                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Student
-                  </label>
-                  <label class="btn btn-default">
-                    <input type="radio" name="options" id="option2" autocomplete="off"> Instructor
-                  </label>
-                </div>
-              </div>
-              <div class="input-group">
-                <span class="input-group-addon">Username:</span>
-                <input type="text" class="form-control">
-              </div>
-              <div class="input-group">
-                <span class="input-group-addon">Password:</span>
-                <input type="text" class="form-control">
-              </div>
-               <div class="input-group">
-                <span class="input-group-addon">Confirm Password:</span>
-                <input type="text" class="form-control">
-              </div>
-              <div class="input-group">
-                <span class="input-group-addon">Email:</span>
-                <input type="email" class="form-control">
-              </div>
-            </div>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-              <button type="button" class="btn btn-success" data-dismiss="modal">Sign me up!</button>
-            </div>
+                <form name="signupForm" ng-submit="submitForm()" novalidate>
+                  <div class="modal-body">
+                    <div class="input-group">
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-default active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Student
+                      </label>
+                      <label class="btn btn-default">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> Instructor
+                      </label>
+                    </div>
+                  </div>            
+
+                    <div class="form-group" ng-class="{ 'has-error' : errorName || (signupForm.username.$invalid && !signupForm.username.$pristine) }">
+                        <label>Username:</label>
+                        <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="16" required>
+                        <p ng-show="signupForm.username.$error.minlength" class="help-block">Username is too short.</p>
+                        <p ng-show="signupForm.username.$error.maxlength" class="help-block">Username is too long.</p>
+                        <p ng-show="errorName" class="help-block">The username has been taken.</p>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : signupForm.password.$invalid && !signupForm.password.$pristine }">
+                        <label>Password:</label>
+                        <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="6" ng-maxlength="16" repassword required>
+                        <p ng-show="signupForm.password.$error.minlength" class="help-block">password is too short.</p>
+                        <p ng-show="signupForm.password.$error.maxlength" class="help-block">password is too long.</p>
+                    </div>
+                    
+                     <div class="form-group" ng-class="{ 'has-error' :!signupForm.repassword.$pristine || (signupForm.repassword.$viewValue!=signupForm.password.$viewValue) }">
+                        <label>Confirm password:</label>
+                        <input type="password" name="repassword" class="form-control" ng-model="user.repassword" required>
+                        <p ng-show="signupForm.repassword.$viewValue!=signupForm.password.$viewValue" class="help-block">password doesn't match</p>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : errorEmail || (signupForm.email.$invalid && !signupForm.email.$pristine) }">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" ng-model="user.email" required>
+                        <p ng-show="signupForm.email.$invalid && !signupForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                        <p ng-show="errorEmail" class="help-block">The email has been registered</p>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                      <button type="submit" class="btn btn-success" ng-disabled="signupForm.$invalid">Submit</button> 
+                    </div>
+                  </div>
+              </form>
           </div>
         </div>
       </div>
+
       <div class="modal fade" id="loginModal">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
+          <div class="modal-content" ng-controller="LoginCtrl as login">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title" id="myModalLabel">Log in</h4>
             </div>
-            <div class="modal-body">
-              <div class="input-group">
-                <span class="input-group-addon">Username:</span>
-                <input type="text" class="form-control">
-              </div>
-              <div class="input-group">
-                <span class="input-group-addon">Password:</span>
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-              <button type="button" class="btn btn-success" data-dismiss="modal">Log in</button>
-            </div>
+            <form name="loginForm" ng-submit="submitForm()" novalidate>
+                  <div class="modal-body">           
+
+                    <div class="form-group" ng-class="{ 'has-error' : errorAuthen || (loginForm.username.$invalid && !loginForm.username.$pristine) }">
+                        <label>Username:</label>
+                        <input type="text" name="username" class="form-control" ng-model="user.username" required>
+                         <p ng-show="errorAuthen " class="help-block">The username and password does not match.</p>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : errorAuthen || (loginForm.password.$invalid && !loginForm.password.$pristine) }">
+                        <label>Password:</label>
+                        <input type="password" name="password" class="form-control" ng-model="user.password" repassword required>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                      <button type="submit" class="btn btn-success" ng-disabled="loginForm.$invalid">Log in</button> 
+                    </div>
+                  </div>
+              </form>
           </div>
         </div>
       </div>
@@ -130,5 +162,9 @@
             </div>
           </nav>
     </script>
+    <script type="text/javascript">
+		var login_url = "<s:url value="/authenticate" />";
+		var signup_url = "<s:url value="/signup" />";
+	</script>
 </body>
 </html>
