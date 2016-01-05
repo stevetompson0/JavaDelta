@@ -1,5 +1,4 @@
 (function() {
-	var app = angular.module('platform-index', []);
 
 
 	userInfo = {
@@ -17,7 +16,8 @@
 	// 	// rest things to do
 	// })
 
-	app.directive('navBar', [function() {
+	angular.module('platform-index', [])
+	.directive('navBar', [function() {
 		return {
 			restrict: 'E',
 			templateUrl: "nav.html",
@@ -33,11 +33,11 @@
 		};
 	}])
 
-	app.controller('FuncCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+	.controller('FuncCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
 		$rootScope.info = userInfo;
 	}])
 
-	app.controller('SignupCtrl', ['$http', '$scope', '$rootScope', function($http, $scope, $rootScope) {
+	.controller('SignupCtrl', ['$http', '$scope', '$rootScope', function($http, $scope, $rootScope) {
 		$scope.formData = {};
 		$scope.errorName = false;
 		$scope.errorEmail = false;
@@ -77,7 +77,7 @@
 
 	}])
 
-	app.controller('LoginCtrl', ['$http', '$scope', '$rootScope', function($http, $scope, $rootScope) {
+	.controller('LoginCtrl', ['$http', '$scope', '$rootScope', function($http, $scope, $rootScope) {
 
 		$scope.formData = {};
 		$scope.errorAuthen = false;
@@ -97,14 +97,13 @@
 				})
 				.success(function(data) {
 
-					if (!data.success) {
+					if (data.errorAuthen) {
 						// if not successful, bind errors to error variables
 						$scope.errorAuthen = data.errorAuthen; //true not match
 	
 					} else {
 						// if success, update user data and apply
 						$rootScope.info = data;
-						$rootScope.$digest();
 						$(function() {
 							$('#loginModal').modal('hide');
 						})
@@ -113,7 +112,7 @@
 				});
 		};
 
-	}])
+	}]);
 
 })()
 

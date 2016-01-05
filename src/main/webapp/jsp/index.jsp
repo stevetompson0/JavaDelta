@@ -16,7 +16,7 @@
   	<script src="<s:url value="static/js/index.js" />" ></script>
 	<title>Home</title>
 </head>
-<body>
+<body id="index-body">
   <div id="index-wrap">
     <div class="background-wrap">
           <nav-bar></nav-bar>
@@ -33,7 +33,7 @@
         <li><a href="list.html"><i class="fa fa-th-list"></i> List of Questions ></a></li>
       </ul>
       <ul ng-show="$root.info.loginAs==1">
-        <li><a href="#" title="click to log out"><i class="fa fa-user"></i>{{$root.info.username}} ></a></li> 
+        <li><a href="#" title="click to log out"  data-toggle="modal" data-target="#logoutModal"><i class="fa fa-user"></i>{{$root.info.username}} ></a></li> 
         <li><a href="library.html"><i class="fa fa-heart"></i> My Library ></a></li>
         <li><a href="list.html"><i class="fa fa-th-list"></i> List of Questions ></a></li>
       </ul>
@@ -135,6 +135,23 @@
               </form>
           </div>
         </div>
+      </div>
+       <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">		
+        <div class="modal-dialog" role="document">		
+          <div class="modal-content">		
+            <div class="modal-header">		
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>		
+              <h4 class="modal-title" id="myModalLabel">Log out</h4>		
+            </div>		
+            <div class="modal-body">		
+              Confirm to log out. 		
+            </div>		
+            <div class="modal-footer">		
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>		
+              <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>		
+            </div>		
+          </div>		
+        </div>		
       </div>
   </div>
 	<!-- move to html files when fetching from the server -->
