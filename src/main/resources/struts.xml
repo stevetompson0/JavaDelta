@@ -34,6 +34,10 @@
 			<result>/jsp/record.jsp</result>
 		</action>
 		
+		<action name="tag" class="com.delta.actions.TagAction">
+			<result name="success">/jsp/tag.jsp</result>
+		</action>
+		
 		<!-- Ajax apis -->
 		<action name="authenticate" class="com.delta.api.AuthenticationAPI">
 			<result name="success" type="json">

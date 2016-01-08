@@ -6,18 +6,12 @@
   <display-name>Java Delta Web Application</display-name>
 
    <!-- Include this if you are using Hibernate -->
-   <!-- 
     <filter>
         <filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
         <filter-class>
             org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
         </filter-class>
     </filter>
-    <filter-mapping>
-        <filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    -->
     
     <filter>
       <filter-name>struts2</filter-name>
@@ -31,6 +25,11 @@
 		<filter-name>struts2</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<filter-mapping>
+        <filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 	
 	<listener>

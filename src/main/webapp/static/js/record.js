@@ -1,10 +1,8 @@
-//main module for algorithm platform
-//last edited: 15.12.14
 (function() {
-	var app = angular.module('platform-record', []);
 
-	//module nav
-	app.directive('navBar', [function() {
+	angular.module('platform-record', [])
+
+	.directive('navBar', [function() {
 		return {
 			restrict: 'E',
 			templateUrl: "nav.html",
@@ -20,94 +18,98 @@
 		};
 	}])
 
-	app.controller('RecordCtrl', ['$scope', function($scope) {
-			$scope.variables = [];
-			$scope.classType = ["success", "primary", "warning"];
+	.controller('RecordCtrl', ['$scope', function($scope) {
+		$scope.variables = [];
+		$scope.classType = ["success", "primary", "warning"];
+		$scope.counter = 0;
 
-			$scope.removeVariable=function (index) {
-				$scope.variables.splice(index-1, 1);
-				document.getElementById('variable-label'+index).remove();
-			}
+		$scope.removeVariable = function(index) {
+			for (var i = 0; i < $scope.variables.length; i++) {
+				if ($scope.variables[i].index == index) {
+					$scope.variables.splice(i, 1);
+				}
+			};
+			document.getElementById('variable-label' + index).remove();
+		}
 
-			$scope.insertVariable = function() {
-				$(function() {
-					$('#record-editor').focus();
-				});
-				this.variables.push({
-					type: 1,
-					index: this.variables.length + 1,
-					val: "",
-				})
-				replaceSelectionWithHtml("&nbsp;<span class='label label-success' contenteditable='false' id='variable-label" + this.variables.length + "'>a" + this.variables.length + "</span>&nbsp;");
-				$(function() {
-					$('.collapse').removeClass('in');
-					setTimeout(function() {
-						$('[data-variable]').unbind('click').click(function(event) {
-							var labelClass = $scope.classType[parseInt($(this).attr('data-checked')) - 1];
-							$('#variable-label' + $(this).attr('data-variable')).attr('class', 'label label-' + labelClass);
-							index = parseInt($(this).attr('data-variable'));
-							var a = $('#collapse' + index + " input").eq(2).val().replace(/\s/g, ""),
-								b = $('#collapse' + index + " input").eq(3).val().replace(/\s/g, "");
-							setTimeout(function() {
-								if (a != "" && b != "") {
-									if ($('#collapse' + index + " input").eq(0).parent().hasClass('active')) {
-										$('.formula-container li').eq(index - 1).find('input').val("a" + index + "= randomInt(" + a + "," + b + ");");
-									} else {
-										$('.formula-container li').eq(index - 1).find('input').val("a" + index + "= randomFloat(" + a + "," + b + ");");
-									}
-								};
-							}, 20);
-						});
-					}, 20);
-
-				});
-			}
-
-			$scope.updateFormula = function(index) {
-				$(function() {
+		$scope.insertVariable = function() {
+			document.getElementById('record-editor').focus();
+			$scope.counter += 1;
+			this.variables.push({
+				type: 1,
+				index: $scope.counter,
+				val: "",
+			})
+			replaceSelectionWithHtml("&nbsp;<span class='label label-success noselect' contenteditable='false' id='variable-label" + $scope.counter + "'>a" + $scope.counter + "</span>&nbsp;");
+			//jquery involved
+			$('.collapse').removeClass('in');
+			setTimeout(function() {
+				$('[data-variable]').unbind('click').click(function(event) {
+					var labelClass = $scope.classType[parseInt($(this).attr('data-checked')) - 1];
+					$('#variable-label' + $(this).attr('data-variable')).attr('class', 'label label-' + labelClass);
+					index = parseInt($(this).attr('data-variable'));
 					var a = $('#collapse' + index + " input").eq(2).val().replace(/\s/g, ""),
 						b = $('#collapse' + index + " input").eq(3).val().replace(/\s/g, "");
-
-					if (a != "" && b != "") {
-						if ($('#collapse' + index + " input").eq(0).parent().hasClass('active')) {
-							$('.formula-container li').eq(index - 1).find('input').val("a" + index + "= randomInt(" + a + "," + b + ");");
-						} else {
-							$('.formula-container li').eq(index - 1).find('input').val("a" + index + "= randomFloat(" + a + "," + b + ");");
-						}
-
-					};
-				})
-			}
-
-			$scope.editTitle = function() {
-				$(function() {
-					$('#record-title>span').focus();
-				})
-			}
-
-			$scope.tagConfirm = function() {
-				$(function() {
-					tagsHtml = "", tags = $('#tagModal input').val().split(";");
-					for (var i = tags.length - 1; i >= 0; i--) {
-						if ($.trim(tags[i]) != "") {
-							tagsHtml = '<a class="tag-link" href="#' + $.trim(tags[i]) + '">' + $.trim(tags[i]) + "</a>" + tagsHtml;
+					setTimeout(function() {
+						if (a != "" && b != "") {
+							if ($('#collapse' + index + " input").eq(0).parent().hasClass('active')) {
+								$('#formula-line' + index).find('input').val("a" + index + "= randomInt(" + a + "," + b + ");");
+							} else {
+								$('#formula-line' + index).find('input').val("a" + index + "= randomFloat(" + a + "," + b + ");");
+							}
 						};
-					};
-					$('#record-title small').html(tagsHtml);
-					$('#tagModal').modal('hide');
-				})
+					}, 20);
+				});
+			}, 20);
+		}
+
+		$scope.updateFormula = function(index) {
+			var inputs = document.getElementById('collapse' + index).getElementsByTagName('input'),
+				a = inputs[2].value.replace(/\s/g, ""),
+				b = inputs[3].value.replace(/\s/g, "");
+			if (a != "" && b != "") {
+				var variableType = inputs[0].value == "1" ? "Int" : "Float";
+				document.getElementById('formula-line' + index).getElementsByTagName('input')[0].value = "a" + index + "= random" + variableType + "(" + a + "," + b + ");";
+			};
+		}
+
+		$scope.editTitle = function() {
+			document.getElementById('record-title-edit').focus();
+		}
+
+		$scope.tagConfirm = function() {
+			tagsHtml = "", tags = document.getElementById('tag-input').value.split(";");
+			for (var i = tags.length - 1; i >= 0; i--) {
+				if (tags[i].trim() != "") {
+					tagsHtml = '<a class="tag-link" href="#' + tags[i].trim() + '">' + tags[i].trim() + "</a>" + tagsHtml;
+				};
+			};
+			document.getElementById('tag-container').innerHTML = tagsHtml;
+		}
+
+		$scope.deleteLabel = function() {
+			//jquery involved
+			$("#record-editor").on("input", function() {
+				for (var i = 0; i < $('[data-panel-variable]').length; i++) {
+					if ($('#variable-label' + $('[data-panel-variable]').eq(i).attr('data-panel-variable')).text() != "") {} else {
+						$scope.variables.splice(i, 1);
+						$scope.$apply();
+					}
+				};
+			});
+		}
+
+		$scope.deleteLabel();
+
+		$scope.submit = function() {
+			var recordData = {
+				title: document
 			}
+		}
 
-		}])
-		//module footer
+	}]);
+
 })()
-
-//to be put into angular js
-
-jQuery(document).ready(function($) {
-
-});
-
 
 // utility functions
 

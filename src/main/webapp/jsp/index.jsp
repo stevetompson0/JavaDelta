@@ -59,10 +59,10 @@
                   <div class="modal-body">
                     <div class="input-group">
                     <div class="btn-group" data-toggle="buttons">
-                      <label class="btn btn-default active">
+                      <label class="btn btn-default active" ng-click="role=1">
                         <input type="radio" name="options" id="option1" autocomplete="off" checked> Student
                       </label>
-                      <label class="btn btn-default">
+                      <label class="btn btn-default" ng-click="role=2">
                         <input type="radio" name="options" id="option2" autocomplete="off"> Instructor
                       </label>
                     </div>

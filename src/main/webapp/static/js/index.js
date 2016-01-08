@@ -39,11 +39,13 @@
 
 	.controller('SignupCtrl', ['$http', '$scope', '$rootScope', function($http, $scope, $rootScope) {
 		$scope.formData = {};
+		$scope.role = 1;
 		$scope.errorName = false;
 		$scope.errorEmail = false;
 
 		$scope.submitForm = function() {
 			$scope.formData = {
+				role: $scope.role,
 				usename: document.getElementById('s-username').value,
 				password: document.getElementById('s-password').value,
 				email: document.getElementById('s-email').value,

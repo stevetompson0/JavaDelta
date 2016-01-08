@@ -19,7 +19,7 @@ public class User implements UserInterface {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	private long id;
+	private Long id;
 	
 	@Column(name = "password", nullable = false)
     private String password;
@@ -54,9 +54,14 @@ public class User implements UserInterface {
 	private Date dateJoined;
 	
 	@Override
-	public long getId() {
+	public Long getId() {
     	return this.id;
     }
+	
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
     @Override
     public String getPassword() {
