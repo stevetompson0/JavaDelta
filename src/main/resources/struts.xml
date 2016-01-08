@@ -34,7 +34,7 @@
 			<result>/jsp/record.jsp</result>
 		</action>
 		
-		<action name="tag" class="com.delta.actions.TagAction">
+		<action name="tag" class="com.delta.actions.TagAction" method="execute">
 			<result name="success">/jsp/tag.jsp</result>
 		</action>
 		

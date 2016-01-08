@@ -46,9 +46,9 @@
 			$scope.isSaved = true;
 
 			var tagInfo = {
-				tag: document.getElementById('tag-name').innerHTML,
-				abstract: document.getElementById('tag-abstract').innerHTML,
-				intro: document.getElementById('tag-intro').innerHTML,
+				title: document.getElementById('tag-name').innerHTML,
+				summary: document.getElementById('tag-abstract').innerHTML,
+				description: document.getElementById('tag-intro').innerHTML,
 			};
 
 			// to be removed

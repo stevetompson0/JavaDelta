@@ -1,22 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
 <!DOCTYPE html>
-<html ng-app="platform-index">
+<html ng-app="platform-list">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
 	<link rel="stylesheet" href="<s:url value="static/css/bootstrap.min.css" />" >
   	<link rel="stylesheet" href="<s:url value="static/css/font-awesome.min.css" />" >
   	<link rel="stylesheet" href="<s:url value="static/css/style.css" /> " >
-  	<link rel="stylesheet" href="<s:url value="static/css/minislate.css" />" >
- 	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  	<link rel="stylesheet" href="<s:url value="static/css/minislate.css" /> " >
+  	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="<s:url value="static/js/angular.min.js" />" ></script>
 	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>
 	<script src="<s:url value="static/js/minislate.js" />" ></script>
   	<script src="<s:url value="static/js/tag.js" />" ></script>
-	<title>Tag</title>
+	<title>Java</title>
 </head>
 <body>
 	<nav-bar></nav-bar>
