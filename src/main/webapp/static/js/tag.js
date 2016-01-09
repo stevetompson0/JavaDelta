@@ -41,6 +41,7 @@
 			$scope.isSaved = true;
 
 			var tagInfo = {
+				"tag.id": data.id,
 				"tag.title": document.getElementById('tag-name').innerHTML,
 				"tag.summary": document.getElementById('tag-abstract').innerHTML,
 				"tag.description": document.getElementById('tag-intro').innerHTML,

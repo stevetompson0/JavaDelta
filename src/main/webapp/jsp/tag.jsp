@@ -69,6 +69,7 @@
 		</s:if>
 		<s:else>
 			var data = {
+				id: <s:property value="tag.id" />,
 				canEdit: <s:property value="canEdit"/>,
 				tag: '<s:property value="tag.title"/>',
 				abstract: '<s:property value="tag.summary" escapeHtml="false" escapeJavaScript="true"/>',

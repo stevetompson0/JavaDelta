@@ -58,7 +58,7 @@
 		
 		<action name="tagSave" class="com.delta.actions.TagAction" method="save">
 			<result name="success" type="json">
-				<param name="includeProperties"></param>
+				<param name="includeProperties">success</param>
 			</result>
 		</action>
 

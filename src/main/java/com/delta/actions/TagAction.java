@@ -15,6 +15,9 @@ public class TagAction extends ActionSupport {
 	// get the id from url, for debug use only
 	private String title;
 	
+	// whether save or update is successful
+	private boolean success;
+	
 	public TagAction(TagService service) {
 		this.service = service;
 	}
@@ -43,15 +46,16 @@ public class TagAction extends ActionSupport {
 		return title;
 	}
 	
+	public boolean getSuccess() {
+		return this.success;
+	}
+	
 	// executed for save tag
 	public String save() {
-		try {
-			this.service.save(tag);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		
+		this.service.save(tag);
 		tag = null;
+		success = true;
 		return SUCCESS;
 	}
 	
