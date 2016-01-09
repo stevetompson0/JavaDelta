@@ -6,6 +6,7 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.multipart.maxSize" value="10240"></constant>
 	<constant name="struts.action.excludePattern" value=".*/static/.*" />
+	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
 	<package name="delta" extends="json-default">
 	
 		<interceptors>
@@ -36,7 +37,9 @@
 		
 		<action name="tag" class="com.delta.actions.TagAction" method="execute">
 			<result name="success">/jsp/tag.jsp</result>
+			<result name="input">/jsp/tag.jsp</result>
 		</action>
+		
 		
 		<!-- Ajax apis -->
 		<action name="authenticate" class="com.delta.api.AuthenticationAPI">
@@ -51,6 +54,12 @@
 					errorAuthen
 				</param>
 				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		
+		<action name="tagSave" class="com.delta.actions.TagAction" method="save">
+			<result name="success" type="json">
+				<param name="includeProperties"></param>
 			</result>
 		</action>
 

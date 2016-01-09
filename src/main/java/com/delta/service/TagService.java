@@ -1,5 +1,7 @@
 package com.delta.service;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.delta.model.Tag;
 
 /**
@@ -7,6 +9,7 @@ import com.delta.model.Tag;
  * @author steve
  *
  */
+@Transactional
 public interface TagService {
 	
 	// create or update

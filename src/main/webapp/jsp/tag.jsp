@@ -63,5 +63,8 @@
             </div>
           </nav>
     </script>
+    <script type="text/javascript">
+		var tag_save_url = "<s:url value="/tagSave" />";
+	</script>
 </body>
 </html>

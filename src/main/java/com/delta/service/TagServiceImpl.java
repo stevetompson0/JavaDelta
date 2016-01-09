@@ -11,15 +11,16 @@ import com.delta.model.Tag;
 
 @Transactional
 public class TagServiceImpl implements TagService{
+	@PersistenceContext
 	private EntityManager em;
 	
-	@PersistenceContext
+	public EntityManager getEntityManager() {
+        return em;
+    }
+
+
     public void setEntityManager(EntityManager em) {
         this.em = em;
-    }
-	
-	private EntityManager getEntityManager() {
-        return em;
     }
 
 	@Override

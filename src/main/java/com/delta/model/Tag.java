@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -14,11 +15,11 @@ import javax.persistence.TemporalType;
 @Table(name = "question_tag")
 public class Tag {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
 	private Long id;
 	
-	@Column(name = "title")
+	@Column(name = "title", nullable = false)
 	private String title;
 	
 	@Column(name = "abstract")
@@ -30,7 +31,7 @@ public class Tag {
 	@Column(name = "usage_num")
 	private long usageNum;
 	
-	@Column(name = "is_master", nullable = false, columnDefinition = "TINYINT(1)")
+	@Column(name = "is_master", columnDefinition = "TINYINT(1)")
 	private boolean isMaster;
 	
 	@Column(name = "creation_time", nullable = false, updatable = false, columnDefinition="DATETIME")

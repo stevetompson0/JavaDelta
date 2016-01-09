@@ -18,7 +18,7 @@
 		};
 	}])
 
-	.controller('TaginfoCtrl', ['$scope', function($scope) {
+	.controller('TaginfoCtrl', ['$scope', '$http', function($scope, $http) {
 		$scope.data = {
 			canEdit: true,
 			tag: "JavaScript",
@@ -46,33 +46,28 @@
 			$scope.isSaved = true;
 
 			var tagInfo = {
-				title: document.getElementById('tag-name').innerHTML,
-				summary: document.getElementById('tag-abstract').innerHTML,
-				description: document.getElementById('tag-intro').innerHTML,
+				"tag.title": document.getElementById('tag-name').innerHTML,
+				"tag.summary": document.getElementById('tag-abstract').innerHTML,
+				"tag.description": document.getElementById('tag-intro').innerHTML,
 			};
 
-			// to be removed
 
-			var d = new Date();
-			$scope.saveText = "saved at " + d.getHours() + ":"+(d.getMinutes()<10?'0':"")+ d.getMinutes();
-
-			// replaced with
-			// $http({
-			// 		method: 'POST',
-			// 		url: 'saveTagProcess', 
-			// 		data: $.param(tagInfo), 
-			// 		headers: {
-			// 			'Content-Type': 'application/x-www-form-urlencoded'
-			// 		} 
-			// 	})
-			// 	.success(function(data) {
-			// 		if (!data.success) {
-			// 			$scope.saveText = "not saved";
-			// 		} else {
-			//			var d = new Date();
-			// 			$scope.saveText = "saved at " + d.getHours() + ":" + (d.getMinutes()<10?'0':"")+ d.getMinutes();
-			// 		}
-			// 	});
+			$http({
+			 	method: 'POST',
+				url: tag_save_url, 
+				data: $.param(tagInfo), 
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				} 
+			})
+			.success(function(data) {
+				if (!data.success) {
+					$scope.saveText = "not saved";
+				} else {
+					var d = new Date();
+					$scope.saveText = "saved at " + d.getHours() + ":" + (d.getMinutes()<10?'0':"")+ d.getMinutes();
+				}
+			});
 
 		}
 

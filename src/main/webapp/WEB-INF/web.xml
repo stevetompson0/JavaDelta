@@ -20,17 +20,17 @@
       </filter-class>
    </filter>
    
+   <filter-mapping>
+        <filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+   
 
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<filter-mapping>
-        <filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
 	
 	<listener>
 		<listener-class>
