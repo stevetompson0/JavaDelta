@@ -13,7 +13,7 @@ public class TagAction extends ActionSupport {
 	private boolean canEdit = true;
 	
 	// get the id from url, for debug use only
-	private Long id;
+	private String title;
 	
 	public TagAction(TagService service) {
 		this.service = service;
@@ -35,12 +35,12 @@ public class TagAction extends ActionSupport {
 		return this.canEdit;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
-	public Long getId() {
-		return id;
+	public String getTitle() {
+		return title;
 	}
 	
 	// executed for save tag
@@ -58,7 +58,7 @@ public class TagAction extends ActionSupport {
 	// executed for retrieve Tag or record new tag
 	public String execute() {
 		// page for creating new tag
-		tag = this.service.findById(id);
+		tag = this.service.findByTitle(title);
 		// fetch Tag 
 		return SUCCESS;
 	}

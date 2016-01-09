@@ -1,6 +1,7 @@
 package com.delta.service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -40,8 +41,12 @@ public class TagServiceImpl implements TagService{
 
 	@Override
 	public Tag findByTitle(String title) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Tag> results = em.createQuery("SELECT t FROM Tag t where t.title = :title1", Tag.class)
+				.setParameter("title1", title).getResultList();
+		if (results.size() == 0)
+			return null;
+		else
+			return results.get(0);
 	}
 	
 	@Override

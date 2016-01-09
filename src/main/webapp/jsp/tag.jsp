@@ -70,9 +70,9 @@
 		<s:else>
 			var data = {
 				canEdit: <s:property value="canEdit"/>,
-				tag: "<s:property value="tag.title"/>",
-				abstract: "<s:property value="tag.summary" escapeHtml="false"/>",
-				intro: "<s:property value="tag.description" escapeHtml="false"/>",	
+				tag: '<s:property value="tag.title"/>',
+				abstract: '<s:property value="tag.summary" escapeHtml="false" escapeJavaScript="true"/>',
+				intro: '<s:property value="tag.description" escapeHtml="false" escapeJavaScript="true"/>',	
 			};	
 		</s:else>
 		
