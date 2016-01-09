@@ -19,12 +19,7 @@
 	}])
 
 	.controller('TaginfoCtrl', ['$scope', '$http', function($scope, $http) {
-		$scope.data = {
-			canEdit: true,
-			tag: "JavaScript",
-			abstract: "JavaScript (not to be confused with Java) is a dynamic, weakly-typed language used for client-side as well as server-side scripting. Use this tag for questions regarding ECMAScript and its various dialects/implementations (excluding ActionScript and Google-Apps-Script). Unless another tag for a framework/library is also included, a pure JavaScript answer is expected.",
-			intro: "<p><b>JavaScript</b> is a dynamic, object-based, prototype-based, weakly typed language traditionally used for client-side scripting in web browsers. javascript can also be run outside of the browser with the use of a framework like . Despite the name, it is unrelated to the Java programming language and shares only superficial similarities.&nbsp;</p><blockquote><p>Unless a tag for a framework or library is also included, a pure JavaScript answer is expected for questions with the tag.</p></blockquote>",
-		};
+		$scope.data = data;
 
 		$scope.startEdit = false;
 

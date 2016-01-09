@@ -10,11 +10,6 @@
   	<link rel="stylesheet" href="<s:url value="static/css/style.css" /> " >
   	<link rel="stylesheet" href="<s:url value="static/css/minislate.css" /> " >
   	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="<s:url value="static/js/angular.min.js" />" ></script>
-	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>
-	<script src="<s:url value="static/js/minislate.js" />" ></script>
-  	<script src="<s:url value="static/js/tag.js" />" ></script>
 	<title>Java</title>
 </head>
 <body>
@@ -28,8 +23,7 @@
     </div>
     <div>
       <h4>Abstract:</h4>
-      <div id="tag-abstract" contenteditable="{{startEdit}}" ng-class="{editing:startEdit}">
-        {{data.abstract}}
+      <div id="tag-abstract" ng-bind-html="data.abstract | unsafe" contenteditable="{{startEdit}}" ng-class="{editing:startEdit}">
       </div>
     </div>
     <div>
@@ -65,6 +59,28 @@
     </script>
     <script type="text/javascript">
 		var tag_save_url = "<s:url value="/tagSave" />";
+		<s:if test="tag == null">
+			var data = {
+				canEdit: <s:property value="canEdit"/>,
+				tag: "new tag",
+				abstract: "Please edit abstract for this new tag",
+				intro: "Please edit descirption to this new tag",	
+			};
+		</s:if>
+		<s:else>
+			var data = {
+				canEdit: <s:property value="canEdit"/>,
+				tag: "<s:property value="tag.title"/>",
+				abstract: "<s:property value="tag.summary" escapeHtml="false"/>",
+				intro: "<s:property value="tag.description" escapeHtml="false"/>",	
+			};	
+		</s:else>
+		
 	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="<s:url value="static/js/angular.min.js" />" ></script>
+	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>
+	<script src="<s:url value="static/js/minislate.js" />" ></script>
+	<script src="<s:url value="static/js/tag.js" />" ></script>
 </body>
 </html>

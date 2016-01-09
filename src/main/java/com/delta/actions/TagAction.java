@@ -9,6 +9,8 @@ public class TagAction extends ActionSupport {
 	private Tag tag;
 	// dependency injected by spring
 	private TagService service;
+	// whether this tag can be edit
+	private boolean canEdit = true;
 	
 	// get the id from url, for debug use only
 	private Long id;
@@ -25,6 +27,14 @@ public class TagAction extends ActionSupport {
 		return this.tag;
 	}
 	
+	public void setCanEdit(boolean canEdit) {
+		this.canEdit = canEdit;
+	}
+	
+	public boolean getCanEdit() {
+		return this.canEdit;
+	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -36,7 +46,7 @@ public class TagAction extends ActionSupport {
 	// executed for save tag
 	public String save() {
 		try {
-		this.service.save(tag);
+			this.service.save(tag);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -48,11 +58,8 @@ public class TagAction extends ActionSupport {
 	// executed for retrieve Tag or record new tag
 	public String execute() {
 		// page for creating new tag
-		if (id == null) {
-			return INPUT;
-		}
+		tag = this.service.findById(id);
 		// fetch Tag 
-		
 		return SUCCESS;
 	}
 
