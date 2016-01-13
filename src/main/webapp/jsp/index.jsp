@@ -5,15 +5,16 @@
 <!DOCTYPE html>
 <html ng-app="platform-index">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
 	<link rel="stylesheet" href="<s:url value="static/css/bootstrap.min.css" />" >
   	<link rel="stylesheet" href="<s:url value="static/css/font-awesome.min.css" />" >
   	<link rel="stylesheet" href="<s:url value="static/css/style.css" /> " >
  	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="<s:url value="static/js/angular.min.js" />" ></script>
-	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>
-  	<script src="<s:url value="static/js/index.js" />" ></script>
 	<title>Home</title>
 </head>
 <body id="index-body">
@@ -38,7 +39,7 @@
         <li><a href="list.html"><i class="fa fa-th-list"></i> List of Questions ></a></li>
       </ul>
       <ul ng-show="$root.info.loginAs==2">
-        <li><a href="#" title="click to log out"><i class="fa fa-user"></i>{{$root.info.username}} ></a></li>
+        <li><a href="#" title="click to log out"  data-toggle="modal" data-target="#logoutModal"><i class="fa fa-user"></i>{{$root.info.username}} ></a></li>
         <li><a href="MyQuestions.html"><i class="fa fa-save"></i> My Questions ></a></li>
         <li><a href="record.html"><i class="fa fa-pencil"></i> Record a Question ></a></li>
       </ul>
@@ -183,5 +184,9 @@
 		var login_url = "<s:url value="/authenticate" />";
 		var signup_url = "<s:url value="/signup" />";
 	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="<s:url value="static/js/angular.min.js" />" ></script>
+	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>
+  	<script src="<s:url value="static/js/index.js" />" ></script>
 </body>
 </html>

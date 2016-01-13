@@ -20,9 +20,13 @@ input,button,textarea,label{
 #index-body{
 	min-width: 1100px;
 }
+body{
+	position: relative;
+}
 body::after {
   content: "";
   background: url(../img/bg_bright.png);
+  background-repeat: repeat-y;
   opacity: 0.3;
   top: 0;
   left: 0;
@@ -38,6 +42,9 @@ body::after {
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(175,202,9,.6);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(175,202,9,.6);
+}
+.form-control{
+	background: rgba(255,255,255,.6);
 }
 .modal-dialog{
 	margin-top: 70px !important;
@@ -359,6 +366,16 @@ box-shadow: 5px 5px 5px 1px rgba(175,202,9,0.48);
 .filter-container a:active,
 .filter-container a:focus{
 	text-decoration: none;
+}
+#fliterTag{
+	width: 120px;
+	display: inline;
+	margin-left: 20px;
+}
+.browseTag-list li{
+	list-style: none;
+	margin-top: 30px;
+
 }
 /*question content*/
 .page-header{

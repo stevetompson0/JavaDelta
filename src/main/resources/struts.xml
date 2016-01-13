@@ -39,6 +39,10 @@
 			<result name="success">/jsp/tag.jsp</result>
 		</action>
 		
+		<action name="tags" class="com.delta.actions.TagAction" method="getTags">
+			<result name="success">/jsp/browseTag.jsp</result>
+		</action>
+		
 		
 		<!-- Ajax apis -->
 		<action name="authenticate" class="com.delta.api.AuthenticationAPI">

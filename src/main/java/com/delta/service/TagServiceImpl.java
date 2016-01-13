@@ -50,6 +50,13 @@ public class TagServiceImpl implements TagService{
 	}
 	
 	@Override
+	public List<Tag> findAllTags() {
+		List<Tag> results = em.createQuery("SELECT t FROM Tag t", Tag.class)
+				.getResultList();
+		return results;
+	}
+	
+	@Override
 	public Tag findById(Long id) {
 		return em.find(Tag.class, id);
 	}

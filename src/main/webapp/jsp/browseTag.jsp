@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
-<html ng-app="platform-list">
+<html ng-app="platform-browseTag">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
@@ -15,27 +15,21 @@
   	<link rel="stylesheet" href="<s:url value="static/css/style.css" /> " >
   	<link rel="stylesheet" href="<s:url value="static/css/minislate.css" /> " >
   	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-	<title>Tag information</title>
+	<title>All tags</title>
 </head>
 <body>
 	<nav-bar></nav-bar>
-  <div class="container taginfo-container" ng-controller="TaginfoCtrl as info">
+  <div class="container" ng-controller="BrowseTagCtrl as bt">
     <div class="page-header">
-      <h3>Tag info: 
-        <span class="label label-default"><span contenteditable="{{startEdit}}" id="tag-name">{{data.tag}}</span></span> <small ng-show="data.canEdit">
-        <a href="#" id="editing" ng-class="{active:isActive}" ng-click="enableEdit()"><i class="fa fa-edit"></i> {{editText}}</a>
-        <a href="#" ng-class="{active:isSaved}" ng-click="save()"><i class="fa fa-save"></i> {{saveText}}</a></small></h3>
+      <h3>Tags <small><input type="text" id="fliterTag" ng-model="search" class="form-control" placeholder="search by title" /></small></h3>
     </div>
-    <div>
-      <h4>Abstract:</h4>
-      <div id="tag-abstract" ng-bind-html="data.abstract | unsafe" contenteditable="{{startEdit}}" ng-class="{editing:startEdit}">
-      </div>
-    </div>
-    <div>
-      <h4>Information:</h4>
-      <div id="tag-intro" ng-bind-html="data.intro | unsafe" ng-class="{editing:startEdit}">
-      </div>
-    </div>
+    <ul class="browseTag-list">
+      <li class="col-lg-3" ng-repeat="tag in tags | fuzzyBy: 'name': search">
+        <a href="{{tag.link}}"><span class="label label-success">{{tag.name}}</span></a>
+        <hr/>
+        <p>{{tag.abstract}}</p>
+      </li>
+    </ul>
   </div>
 	<!-- move to html files when fetching from the server -->
       <script type="text/ng-template" id="nav.html">
@@ -62,31 +56,10 @@
             </div>
           </nav>
     </script>
-    <script type="text/javascript">
-		var tag_save_url = "<s:url value="/tagSave" />";
-		<s:if test="tag == null">
-			var data = {
-				canEdit: <s:property value="canEdit"/>,
-				tag: "new tag",
-				abstract: "Please edit abstract for this new tag",
-				intro: "Please edit descirption to this new tag",	
-			};
-		</s:if>
-		<s:else>
-			var data = {
-				id: <s:property value="tag.id" />,
-				canEdit: <s:property value="canEdit"/>,
-				tag: '<s:property value="tag.title"/>',
-				abstract: '<s:property value="tag.summary" escapeHtml="false" escapeJavaScript="true"/>',
-				intro: '<s:property value="tag.description" escapeHtml="false" escapeJavaScript="true"/>',	
-			};	
-		</s:else>
-		
-	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="<s:url value="static/js/angular.min.js" />" ></script>
 	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>
-	<script src="<s:url value="static/js/minislate.js" />" ></script>
-	<script src="<s:url value="static/js/tag.js" />" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.js"></script>
+	<script src="<s:url value="static/js/browseTag.js" />" ></script>
 </body>
 </html>

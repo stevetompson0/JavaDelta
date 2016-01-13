@@ -3,7 +3,7 @@
 
 	userInfo = {
 		loginAs: 0, //0 as not login, 1 as student, 2 as instructor
-		username: "Wei",
+		username: "",
 		errorName: true,
 		errorEmail: true,
 		errorAuthen: true,
@@ -69,10 +69,7 @@
 					} else {
 						// if success, update user data and apply
 						$rootScope.info = data;
-						$rootScope.$digest();
-						$(function() {
-							$('#signupModal').modal('hide');
-						})
+						$('#signupModal').modal('hide');
 					}
 				});
 		};

@@ -1,5 +1,7 @@
 package com.delta.service;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.delta.model.Tag;
@@ -20,6 +22,9 @@ public interface TagService {
 
 	// retrieve tag by its id
 	public Tag findById(Long id);
+
+	// retrieve all tags
+	List<Tag> findAllTags();
 	
 	
 
