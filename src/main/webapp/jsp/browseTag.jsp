@@ -56,6 +56,9 @@
             </div>
           </nav>
     </script>
+    <script>
+    	var tags = <s:property value="jsonResult" escapeHtml="false"/>;
+    </script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="<s:url value="static/js/angular.min.js" />" ></script>
 	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>

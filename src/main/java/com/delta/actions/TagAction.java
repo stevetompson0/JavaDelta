@@ -2,15 +2,18 @@ package com.delta.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.delta.model.Tag;
 import com.delta.service.TagService;
 
-public class TagAction extends ActionSupport {
+public class TagAction extends ActionSupport implements ServletRequestAware {
 	
 	private Tag tag;
 	// dependency injected by spring
@@ -25,9 +28,16 @@ public class TagAction extends ActionSupport {
 	private boolean success;
 	
 	/** used for search tags **/
+	private static final String JSON_TITLE_KEY = "name";
+	private static final String JSON_SUMMARY_KEY = "abstract";
+	private static final String JSON_URL_KEY = "link";
+	
 	private List<Tag> tags;
 	private String keyword;
 	private String jsonResult;
+	private HttpServletRequest request;
+	
+	
 	
 	
 	public TagAction(TagService service) {
@@ -95,14 +105,31 @@ public class TagAction extends ActionSupport {
 		
 		for (Tag tag: tags) {
 			JSONObject obj = new JSONObject();
-			obj.put("name", tag.getTitle());
-			obj.put("abstract", tag.getSummary());
-			obj.put("link", "tag.html");
+			obj.put(TagAction.JSON_TITLE_KEY, tag.getTitle());
+			obj.put(TagAction.JSON_SUMMARY_KEY, tag.getSummary());
+			obj.put(TagAction.JSON_URL_KEY, getUrl(tag.getTitle()));
 			array.add(obj);
 		}
 		
+		// simple-json will escape javascript
 		jsonResult = array.toString();
 		return SUCCESS;
+	}
+	
+	/**
+	 * getUrl -- used to get the relative for a tag
+	 * @param title: name of the tag
+	 * @return a url string
+	 */
+	private String getUrl(String title) {
+		String contextPath = request.getContextPath();
+		String url = String.format("%s/tag?title=%s", contextPath, title);
+		return url;
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
 	}
 
 }
