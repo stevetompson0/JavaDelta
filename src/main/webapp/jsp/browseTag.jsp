@@ -27,7 +27,7 @@
       <li class="col-lg-3" ng-repeat="tag in tags | fuzzyBy: 'name': search">
         <a href="{{tag.link}}"><span class="label label-success">{{tag.name}}</span></a>
         <hr/>
-        <p>{{tag.abstract}}</p>
+        <p ng-bind-html="tag.abstract | unsafe"></p>
       </li>
     </ul>
   </div>

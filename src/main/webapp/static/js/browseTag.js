@@ -27,5 +27,9 @@
 		// })
 		$scope.tags = tags;
 	}])
+	
+	.filter('unsafe', function($sce) {
+		return $sce.trustAsHtml;
+	})
 
 })()
