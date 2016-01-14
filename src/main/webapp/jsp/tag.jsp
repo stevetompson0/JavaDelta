@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="<s:url value="static/css/bootstrap.min.css" />" >
   	<link rel="stylesheet" href="<s:url value="static/css/font-awesome.min.css" />" >
   	<link rel="stylesheet" href="<s:url value="static/css/style.css" /> " >
-  	<link rel="stylesheet" href="<s:url value="static/css/pen.css" /> " >
+  	<link rel="stylesheet" href="<s:url value="static/css/minislate.css" /> " >
   	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 	<title>Tag information</title>
 </head>
@@ -93,9 +93,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="<s:url value="static/js/angular.min.js" />" ></script>
 	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>
-	<script src="<s:url value="static/js/pen.js" />" ></script>
-	<script src="<s:url value="static/js/markdown.js" />" ></script>
-	<script type="text/javascript" src="https://rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
+	<script src="<s:url value="static/js/minislate.js" />" ></script>
 	<script src="<s:url value="static/js/tag.js" />" ></script>
 </body>
 </html>

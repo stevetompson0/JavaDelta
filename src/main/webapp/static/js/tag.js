@@ -87,5 +87,7 @@
 
 // not sure why those error messages on console, although it doesn't affect the way it works.
 jQuery(document).ready(function($) {
-	$('[data-toggle="tooltip"]').tooltip();
+	$('#editing').one('click', function(event) {
+		var editor = new Minislate.simpleEditor(document.getElementById('tag-intro'));
+	});
 });
