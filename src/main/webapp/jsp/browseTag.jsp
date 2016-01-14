@@ -21,13 +21,13 @@
 	<nav-bar></nav-bar>
   <div class="container" ng-controller="BrowseTagCtrl as bt">
     <div class="page-header">
-      <h3>Tags <small><input type="text" id="fliterTag" ng-model="search" class="form-control" placeholder="search by title" /></small></h3>
+      <h3>Tags <small><input type="text" id="fliterTag" ng-model="search" class="form-control" placeholder="search by title" /></small><a href="<s:url value="tag"/>" id="newTag" class="pull-right btn btn-default btn-sm">new tag</a></h3>
     </div>
     <ul class="browseTag-list">
       <li class="col-lg-3" ng-repeat="tag in tags | fuzzyBy: 'name': search">
         <a href="{{tag.link}}"><span class="label label-success">{{tag.name}}</span></a>
         <hr/>
-        <p ng-bind-html="tag.abstract | unsafe"></p>
+        <p>{{tag.abstract}}</p>
       </li>
     </ul>
   </div>
@@ -40,7 +40,8 @@
               </a></div>
               <div class="pull-right">
                     <ul class="top-social no-bottom-margin">
-                      <li><a href="#" title="share to Facebook" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="/list.html" title="list of questions" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-th-list"></i></a></li>
+					  <li><a href="<s:url value="tags"/>" title="list of tags" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-tag"></i></a></li>
                       <li><a href="#" title="Share by email" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-envelope-o "></i></a></li>
                       <li><a href="#" title="Fork on Github" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-github"></i></a></li>
                     </ul>

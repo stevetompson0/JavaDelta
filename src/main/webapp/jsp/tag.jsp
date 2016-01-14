@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="<s:url value="static/css/bootstrap.min.css" />" >
   	<link rel="stylesheet" href="<s:url value="static/css/font-awesome.min.css" />" >
   	<link rel="stylesheet" href="<s:url value="static/css/style.css" /> " >
-  	<link rel="stylesheet" href="<s:url value="static/css/minislate.css" /> " >
+  	<link rel="stylesheet" href="<s:url value="static/css/pen.css" /> " >
   	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 	<title>Tag information</title>
 </head>
@@ -46,7 +46,8 @@
               </a></div>
               <div class="pull-right">
                     <ul class="top-social no-bottom-margin">
-                      <li><a href="#" title="share to Facebook" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="/list.html" title="list of questions" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-th-list"></i></a></li>
+					  <li><a href="<s:url value="tags"/>" title="list of tags" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-tag"></i></a></li>
                       <li><a href="#" title="Share by email" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-envelope-o "></i></a></li>
                       <li><a href="#" title="Fork on Github" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-github"></i></a></li>
                     </ul>
@@ -63,6 +64,12 @@
           </nav>
     </script>
     <script type="text/javascript">
+		var links = {
+				home: "<s:url value="/index"/>",
+				other: "other.html",
+				login: "<s:url value="/index"/>",
+		}    
+    
 		var tag_save_url = "<s:url value="/tagSave" />";
 		<s:if test="tag == null">
 			var data = {
@@ -86,7 +93,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="<s:url value="static/js/angular.min.js" />" ></script>
 	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>
-	<script src="<s:url value="static/js/minislate.js" />" ></script>
+	<script src="<s:url value="static/js/pen.js" />" ></script>
+	<script src="<s:url value="static/js/markdown.js" />" ></script>
+	<script type="text/javascript" src="https://rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
 	<script src="<s:url value="static/js/tag.js" />" ></script>
 </body>
 </html>

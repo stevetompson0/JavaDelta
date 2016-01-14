@@ -9,11 +9,7 @@
 			// controlerAs:"nav", 
 			controller: ['$scope', function($scope) {
 				//pass links throught json
-				$scope.links = {
-					home: "index.html",
-					other: "other.html",
-					login: "login.html",
-				}
+				$scope.links = links;
 			}],
 		};
 	}])
@@ -36,6 +32,20 @@
 			$scope.startEdit = true;
 			$scope.editText = "editing";
 		};
+		
+		var editor;		
+		$('#editing').one('click', function(event) {		
+			var defaults = {		
+				editor: document.getElementById('tag-intro'),		
+				debug: false,		
+				list: [		
+					'blockquote', 'h2', 'h3', 'p', 'insertorderedlist', 'insertunorderedlist',		
+					'indent', 'outdent', 'bold', 'italic', 'underline', 'createlink'		
+				],		
+				stay: false		
+			}		
+			editor = new Pen(defaults);		
+		});
 
 		$scope.save = function() {
 			$scope.isSaved = true;
@@ -77,7 +87,5 @@
 
 // not sure why those error messages on console, although it doesn't affect the way it works.
 jQuery(document).ready(function($) {
-	$('#editing').one('click', function(event) {
-		var editor = new Minislate.simpleEditor(document.getElementById('tag-intro'));
-	});
+	$('[data-toggle="tooltip"]').tooltip();
 });
