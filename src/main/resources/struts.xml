@@ -65,6 +65,13 @@
 				<param name="includeProperties">success</param>
 			</result>
 		</action>
+		
+		<action name="questionSave" class="com.delta.api.RecordAPI">
+			<result name="success" type="json">
+				<param name="includeProperties">id</param>
+			</result>
+		</action>
+		
 
 	</package>
 </struts>

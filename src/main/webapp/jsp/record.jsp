@@ -4,93 +4,109 @@
 <!DOCTYPE html>
 <html ng-app="platform-record">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Record</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
 	<link rel="stylesheet" href="<s:url value="static/css/bootstrap.min.css"/> ">
   	<link rel="stylesheet" href="<s:url value="static/css/font-awesome.min.css"/> ">
   	<link rel="stylesheet" href="<s:url value="static/css/style.css"/> ">
-  	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>    
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="<s:url value="static/js/angular.min.js"/> "></script>
-	<script src="<s:url value="static/js/bootstrap.min.js"/> "></script>
-	<script src="<s:url value="static/js/record.js"/> "></script>
+  	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>    	
 	<title>Record Questions</title>
 </head>
-<body>
+<body id="record-body">
     <nav-bar></nav-bar>
     <div class="container page-content">
-        <div class="page-header">
-          <h3 id="record-title"><span>Question title</span><small>add tags here</small></h3>
-        </div>    
             <form action="" id="record-form" ng-controller="RecordCtrl as record">
+              <div class="page-header">
+                <h3 id="record-title">1. <span id="record-title-edit" contenteditable>Question title</span><small id="tag-container" data-toggle="modal" data-target="#tagModal">add tags here</small></h3>
+              </div> 
                 <div class="container-fluid">
                     <div class="col-lg-8">
                         <div id="record-editor" class="form-control" contenteditable>
                         </div>
                           <div id="record-control" class="btn-group" role="group">
-                            <button type="button" id="record-title" class="btn btn-default" data-toggle="modal" data-target="#titleModal">Edit title</button>
+                            <button type="button" id="record-title" ng-click="editTitle()" class="btn btn-default">Edit title</button>
                              <button type="button" id="record-tags" class="btn btn-default" data-toggle="modal" data-target="#tagModal">Edit tags</button>  
                              <button type="button" id="record-insert" ng-click="insertVariable(0)" class="btn btn-default">Insert variable</button>
                              <button type="button" id="record-options" class="btn btn-default" data-toggle="modal" data-target="#optionModal">Add options</button>
                              <button type="button" id="record-codes" class="btn btn-default"  data-toggle="modal" data-target="#codeModal">Add code</button>
-                            <button type="button" class="btn btn-default">Submit</button>
+                            <button type="button" class="btn btn-default" ng-click="submit()">Submit</button>
                           </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="panel-group" id="set-variable" role="tablist" aria-multiselectable="true">
                         <!-- panel repeat -->
-                        <div class="panel panel-default" ng-repeat="variable in variables">
+                        <div class="panel panel-default" ng-repeat="variable in variables" data-panel-variable="{{variable.index}}">
                           <div class="panel-heading" role="tab" id="headingOne">
                             <h4 class="panel-title">
                               <a role="button" data-toggle="collapse" data-parent="#set-variable" href="#collapse{{variable.index}}" aria-expanded="false" aria-controls="collapse{{variable.index}}">
-                                Variable #{{variable.index}}:
+                                Variable a{{variable.index}}:
                                 <!-- more settings here -->
                               </a>
+                              <a href="#" class="pull-right" ng-click="removeVariable(variable.index)">&times;</a>
                             </h4>
                           </div>
                           <div id="collapse{{variable.index}}" class="panel-collapse collapse in" role="tabpanel">
                             <div class="panel-body">
                               <div class="btn-group" data-toggle="buttons" data-variable="{{variable.index}}" data-checked="{{variable.type}}">
                                 <label class="btn btn-success active" ng-click="variable.type=1;">
-                                  <input type="radio" name="options{{variable.index}}" checked> range
+                                  <input type="radio" name="options{{variable.index}}" checked value="{{variable.type}}"> Integer
                                 </label>
                                 <label class="btn btn-primary" ng-click="variable.type=2">
-                                  <input type="radio" name="options{{variable.index}}"> formulated
-                                </label>
-                                <label class="btn btn-warning" ng-click="variable.type=3">
-                                  <input type="radio" name="options{{variable.index}}"> set
+                                  <input type="radio" name="options{{variable.index}}"> Float
                                 </label>
                               </div>
 
                             <hr/>
-
-                              <input name="range{{variable.index}}" type="text" class="col-lg-12 form-control" placeholder="use - to seperate, example: 1-100" ng-show="variable.type==1">
-                              <input name="formula{{variable.index}}" type="text" class="col-lg-12 form-control" placeholder="place your formula here" ng-show="variable.type==2">
-                              <input name="set{{variable.index}}" type="text" class="col-lg-12 form-control" placeholder="seperate the values with ;" ng-show="variable.type==3">
-
+                                <span class="variable-label">range:</span>
+                                <div class="row variable-range">
+                                  <div class="col-lg-6"><input type="number" class="form-control" ng-blur="updateFormula(variable.index)"></div>
+                                  <div class="col-lg-6"><input type="number" class="form-control" ng-blur="updateFormula(variable.index)"></div>
+                                </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                   
+                </div> 
+                <div class="page-header">
+                    <h3>2. Edit Formulas</h3>
+                </div> 
+                <div class="container-fluid">
+                
+                  <div class="col-lg-8">
+                    <ul id="formula-container" class="form-control" ng-show="variables.length>0">
+                      <li ng-repeat="variable in variables" id="formula-line{{variable.index}}"><span>a{{variable.index}}.</span><input type="text"></li>
+                    </ul>
+                  </div>
+
+                </div>
+                <div class="page-header">
+                    <h3>3. Edit Answers <small>use the variables indicated above</small></h3>
+                </div> 
+                <div class="container-fluid">
+                
+                  <div class="col-lg-8">
+                    <textarea id="answer-textarea" name="answer" class="form-control" id="" cols="30" rows="10"></textarea>
+                  </div>
+
+                </div>
+                 <div class="page-header">
+                    <h3>4. Original Problem <small>Default question without variables</small></h3>
+                </div> 
+                <div class="container-fluid">
+                
+                  <div class="col-lg-8">
+                    <textarea id="origin-textarea" name="answer" class="form-control" id="" cols="30" rows="10"></textarea>
+                  </div>
+
                 </div>
                 <!-- modal -->
-                <div class="modal fade" id="titleModal">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Edit title</h4>
-                      </div>
-                      <div class="modal-body">
-                        <input type="text" class="form-control" placeholder="Your questions title here...">
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success" ng-click="titleConfirm()">Save changes</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
                 <div class="modal fade" id="tagModal">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -99,11 +115,11 @@
                         <h4 class="modal-title" id="myModalLabel">Add tags</h4>
                       </div>
                       <div class="modal-body">
-                        <input type="text" class="form-control" placeholder="Edit tags here ( ; to seperate multiple )...">
+                        <input type="text" id="tag-input" class="form-control" placeholder="Edit tags here ( ; to seperate multiple )...">
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success" ng-click="tagConfirm()">Save changes</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="tagConfirm()">Save changes</button>
                       </div>
                     </div>
                   </div>
@@ -171,5 +187,10 @@
             </div>
           </nav>
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="<s:url value="static/js/angular.min.js"/> "></script>
+	<script src="<s:url value="static/js/bootstrap.min.js"/> "></script>
+	<script src="<s:url value="static/js/record.js"/> "></script>
+    <title>Record Questions</title>
 </body>
 </html>
