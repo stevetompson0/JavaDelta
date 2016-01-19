@@ -2,7 +2,9 @@ package com.delta.api;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
+import com.delta.model.Question;
 import com.opensymphony.xwork2.ActionSupport;
 import com.steve.problem.ProblemApp;
 
@@ -11,9 +13,11 @@ public class RecordAPI extends ActionSupport{
 	
 	private static final long serialVersionUID = 1L;
 	
-	// id of the question
-	private String id = "id11";
+	// json data from form
+	private String jsonData;
 	
+	// question to be saved
+	private Question question;
 
 	@Override
 	public String execute() {
@@ -21,7 +25,8 @@ public class RecordAPI extends ActionSupport{
 		// save problem to database and get the id for the problem
 		
 		/* test only */
-		JSONObject obj = new JSONObject();
+		JSONObject obj = (JSONObject) JSONValue.parse(jsonData);
+		
     	// put variable json list
     	JSONArray variableList = new JSONArray();
     	variableList.add("integer a1");
@@ -50,7 +55,10 @@ public class RecordAPI extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	public String getID(){
-		return this.id;
+	/* setters and getters */
+	public void setJsonData(String jsonData) {
+		this.jsonData = jsonData;
 	}
+	
+
 }

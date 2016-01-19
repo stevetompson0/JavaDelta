@@ -1,5 +1,6 @@
 package com.delta.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -24,8 +25,18 @@ public class QuestionServiceImpl implements QuestionService{
 
 	@Override
 	public void save(Question question) {
-		// TODO Auto-generated method stub
-		
+		Date now = new Date();
+		if (question.getId() == null) {
+            // new
+			question.setCreationTime(now);
+			question.setLastModified(now);
+			// TODO: set hash id, currently hash id is null
+            em.persist(question);
+        } else {
+            // update
+        	question.setLastModified(now);
+            em.merge(question);
+        }
 	}
 
 	@Override
@@ -36,8 +47,7 @@ public class QuestionServiceImpl implements QuestionService{
 
 	@Override
 	public Question findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Question.class, id);
 	}
 
 	@Override

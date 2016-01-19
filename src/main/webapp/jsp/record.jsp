@@ -8,7 +8,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 	<meta name="renderer" content="webkit">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Record</title>
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<link rel="stylesheet" href="<s:url value="static/css/bootstrap.min.css"/> ">
@@ -32,6 +31,7 @@
                             <button type="button" id="record-title" ng-click="editTitle()" class="btn btn-default">Edit title</button>
                              <button type="button" id="record-tags" class="btn btn-default" data-toggle="modal" data-target="#tagModal">Edit tags</button>  
                              <button type="button" id="record-insert" ng-click="insertVariable(0)" class="btn btn-default">Insert variable</button>
+                             <button type="button" id="record-insert" ng-click="insertVariable(1)" class="btn btn-default">Insert hidden variable</button>
                              <button type="button" id="record-options" class="btn btn-default" data-toggle="modal" data-target="#optionModal">Add options</button>
                              <button type="button" id="record-codes" class="btn btn-default"  data-toggle="modal" data-target="#codeModal">Add code</button>
                             <button type="button" class="btn btn-default" ng-click="submit()">Submit</button>
@@ -80,14 +80,15 @@
                 <div class="container-fluid">
                 
                   <div class="col-lg-8">
-                    <ul id="formula-container" class="form-control" ng-show="variables.length>0">
-                      <li ng-repeat="variable in variables" id="formula-line{{variable.index}}"><span>a{{variable.index}}.</span><input type="text"></li>
+                    <ul class="formula-container form-control" id="formula-container1">
+                    	<li ng-repeat="variable in variables" id="formula-line{{variable.index}}"><span>a{{variable.index}} = </span><input type="text"></li>
+                    	<li><a id="add-formula" ng-click="addFormula()"><i class="fa fa-plus-square-o"></i>Add a new formula</a></li>
                     </ul>
                   </div>
 
                 </div>
                 <div class="page-header">
-                    <h3>3. Edit Answers <small>use the variables indicated above</small></h3>
+                    <h3>3. Edit Answers <small>use the variables indicated above and include in $; eg $a1$</small></h3>
                 </div> 
                 <div class="container-fluid">
                 
@@ -187,6 +188,9 @@
             </div>
           </nav>
     </script>
+    <script type="text/javascript">
+		var save_url = "<s:url value="/questionSave" />";
+	</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="<s:url value="static/js/angular.min.js"/> "></script>
 	<script src="<s:url value="static/js/bootstrap.min.js"/> "></script>
