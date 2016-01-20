@@ -2,9 +2,9 @@ package com.delta.service;
 
 import java.util.List;
 
-import com.delta.model.Question;
+import com.delta.model.QuestionInterface;
 /**
- * QuestionService -- interface to perform CRUD on Question
+ * QuestionService -- interface to perform CRUD on QuestionInterface
  * @author steve
  *
  */
@@ -12,21 +12,21 @@ import com.delta.model.Question;
 public interface QuestionService {
 		
 	// create or update question
-	public void save(Question question);
+	public void save(QuestionInterface question);
 	
 	// retrieve question by its title
-	public Question findByTitle(String title);
+	public QuestionInterface findByTitle(String title);
 
 	// retrieve question by its id
-	public Question findById(Long id);
+	public QuestionInterface findById(Long id);
 	
 	// retrieve question by its hash_id
-	public Question findByHashId(String hashId);
+	public QuestionInterface findByHashId(String hashId);
 	
 	// retrieve questions by keywords
-	List<Question> findQuestionsByKeyword(String keyword);
+	List<QuestionInterface> findQuestionsByKeyword(String keyword);
 
 	// retrieve all questions
-	List<Question> findAllQuestions();
+	List<QuestionInterface> findAllQuestions();
 
 }

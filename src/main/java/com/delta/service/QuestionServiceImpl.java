@@ -9,6 +9,8 @@ import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.delta.model.Question;
+import com.delta.model.QuestionInterface;
+
 
 @Transactional
 public class QuestionServiceImpl implements QuestionService{
@@ -24,46 +26,46 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
 	@Override
-	public void save(Question question) {
+	public void save(QuestionInterface question) {
 		Date now = new Date();
 		if (question.getId() == null) {
             // new
 			question.setCreationTime(now);
 			question.setLastModified(now);
 			// TODO: set hash id, currently hash id is null
-            em.persist(question);
+            em.persist((Question) question);
         } else {
             // update
         	question.setLastModified(now);
-            em.merge(question);
+            em.merge((Question) question);
         }
 	}
 
 	@Override
-	public Question findByTitle(String title) {
+	public QuestionInterface findByTitle(String title) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Question findById(Long id) {
+	public QuestionInterface findById(Long id) {
 		return em.find(Question.class, id);
 	}
 
 	@Override
-	public Question findByHashId(String hashId) {
+	public QuestionInterface findByHashId(String hashId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Question> findQuestionsByKeyword(String keyword) {
+	public List<QuestionInterface> findQuestionsByKeyword(String keyword) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Question> findAllQuestions() {
+	public List<QuestionInterface> findAllQuestions() {
 		// TODO Auto-generated method stub
 		return null;
 	}

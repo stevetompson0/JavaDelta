@@ -1,0 +1,26 @@
+{
+  "PROBLEM": {
+    "VARIABLE": [
+      "integer a1",
+      "integer a2",
+      "integer a3",
+      "integer a4",
+      "integer a5"
+    ],
+    "GENERATOR": [
+      "a1=RandomPackage.RandomNum(1, 30);",
+      "a2=RandomPackage.RandomNum(1, 30);",
+      "a3=RandomPackage.RandomNum(1, 30);",
+      "a4=RandomPackage.RandomNum(1, 30);",
+      "a5=RandomPackage.RandomNum(1, 30);"
+    ],
+    "BODY": "Consider the sorting problem.  Suppose that the list is: $a1$, $a2$, $a3$, $a4$, $a5$. Use the merge sort algorithm to sort the list in increasing order. Show the intermediate steps.",
+    "ANSWER": "No answer so far."
+  },
+  "ORIGINAL_PROBLEM": "Consider the sorting problem.  Suppose that the list is: 3, 2, 1, 5, 8, 9, 10, 4, 7, 6, 12, and 11. Use the merge sort algorithm to sort the list in increasing order. Show the intermediate steps.",
+  "TAGS": [
+    "sort",
+    "merge_sort"
+  ],
+  "TYPE": "1"
+}

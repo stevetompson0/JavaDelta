@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "question_question")
-public class Question implements QuestionInterface{
+public class Question implements QuestionInterface {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
@@ -39,7 +39,7 @@ public class Question implements QuestionInterface{
 	private Byte type;
 	
 	@Column(name = "is_public", columnDefinition = "TINYINT(1)")
-	private Boolean isPublic;
+	private Boolean isPublic = false;
 	
 	@Column(name = "original_body")
 	private String originalBody;

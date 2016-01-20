@@ -23,6 +23,15 @@
 	<bean id="tagAction" scope="prototype" class="com.delta.actions.TagAction">
         <constructor-arg ref="TagService" />
     </bean>
+    
+    <!-- for record api -->
+    <bean id="QuestionService" class="com.delta.service.QuestionServiceImpl" />
+    <bean id="Question" class="com.delta.model.Question" />
+    
+    <bean id="recordAPI" scope="prototype" class="com.delta.api.RecordAPI">
+        <constructor-arg ref="QuestionService" />
+        <constructor-arg ref="Question" />
+    </bean>
 	
 	<!-- jpa configuration -->
 	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
@@ -43,8 +52,8 @@
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <!-- for development use -->
-        <!-- <property name="url" value="jdbc:mysql://localhost:3306/java_delta" />  -->
-        <property name="url" value="jdbc:mysql://javadelta.cieoahply7kd.us-east-1.rds.amazonaws.com:3306/java_delta" />
+        <property name="url" value="jdbc:mysql://localhost:3306/java_delta" />
+        <!-- <property name="url" value="jdbc:mysql://javadelta.cieoahply7kd.us-east-1.rds.amazonaws.com:3306/java_delta" /> -->
         <property name="username" value="mysql_admin" />
         <property name="password" value="development" />
     </bean>

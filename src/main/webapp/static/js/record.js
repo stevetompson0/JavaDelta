@@ -56,9 +56,9 @@
 					setTimeout(function() {
 						if (a != "" && b != "") {
 							if ($('#collapse' + index + " input").eq(0).parent().hasClass('active')) {
-								$('#formula-line' + index).find('input').val("RandomPackage.randomNum(" + a + "," + b + ");");
+								$('#formula-line' + index).find('input').val("RandomPackage.RandomNum(" + a + "," + b + ");");
 							} else {
-								$('#formula-line' + index).find('input').val("RandomPackage.randomFloat(" + a + "," + b + ");");
+								$('#formula-line' + index).find('input').val("RandomPackage.RandomFloat(" + a + "," + b + ");");
 							}
 						};
 					}, 20);
@@ -72,7 +72,7 @@
 				b = inputs[3].value.replace(/\s/g, "");
 			if (a != "" && b != "") {
 				var variableType = inputs[0].value == "1" ? "Num" : "Float";
-				document.getElementById('formula-line' + index).getElementsByTagName('input')[0].value = "RandomPackage.random" + variableType + "(" + a + "," + b + ");";
+				document.getElementById('formula-line' + index).getElementsByTagName('input')[0].value = "RandomPackage.Random" + variableType + "(" + a + "," + b + ");";
 			};
 		}
 
@@ -150,9 +150,12 @@
 			 		} // set the headers so angular passing info as form data (not request payload)
 			 	})
 			 	.success(function(data) {
-
-			 		// do something with the data?
-
+			 		if (data.success) {
+			 			id = data.id;
+			 		}
+			 		else {
+			 			// show error
+			 		}
 			 	});
 		}
 

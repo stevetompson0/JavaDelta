@@ -189,6 +189,7 @@
           </nav>
     </script>
     <script type="text/javascript">
+    	var id;
 		var save_url = "<s:url value="/questionSave" />";
 	</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
