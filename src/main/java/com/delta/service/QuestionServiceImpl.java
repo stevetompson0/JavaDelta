@@ -34,6 +34,7 @@ public class QuestionServiceImpl implements QuestionService{
 			question.setLastModified(now);
 			// TODO: set hash id, currently hash id is null
             em.persist((Question) question);
+            em.flush();
         } else {
             // update
         	question.setLastModified(now);

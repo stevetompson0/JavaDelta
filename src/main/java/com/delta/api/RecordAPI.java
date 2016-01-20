@@ -52,6 +52,8 @@ public class RecordAPI extends ActionSupport{
 		JSONObject obj = (JSONObject) JSONValue.parse(jsonData);
 		
     	parseJSONToQuestion(obj);
+    	// set id for updating questions
+    	question.setId(id);
     	service.save(question);
     	this.id = question.getId();
 		

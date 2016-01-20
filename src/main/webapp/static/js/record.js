@@ -139,7 +139,12 @@
 				"CODE": $('#codeModal textarea').val(),
 				"TYPE": 1
 			};
-			var data = {jsonData: JSON.stringify(recordData)};
+			var data = {
+					jsonData: JSON.stringify(recordData), 
+			};
+			if (id) {
+				data['id'] = id;
+			}
 			console.log(recordData);
 			    $http({
 			 		method: 'POST',

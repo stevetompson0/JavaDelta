@@ -68,7 +68,7 @@
 		
 		<action name="questionSave" class="com.delta.api.RecordAPI">
 			<result name="success" type="json">
-				<param name="includeProperties">success</param>
+				<param name="includeProperties">success, id</param>
 			</result>
 		</action>
 		

@@ -26,7 +26,7 @@
     
     <!-- for record api -->
     <bean id="QuestionService" class="com.delta.service.QuestionServiceImpl" />
-    <bean id="Question" class="com.delta.model.Question" />
+    <bean id="Question" scope="prototype" class="com.delta.model.Question" />
     
     <bean id="recordAPI" scope="prototype" class="com.delta.api.RecordAPI">
         <constructor-arg ref="QuestionService" />
