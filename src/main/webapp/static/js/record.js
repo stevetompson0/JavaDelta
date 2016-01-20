@@ -140,7 +140,7 @@
 				"TYPE": 1
 			};
 			var data = {
-					jsonData: JSON.stringify(recordData), 
+					jsonData: JSON.stringify(recordData).escapeSpecialChars(), 
 			};
 			if (id) {
 				data['id'] = id;
@@ -207,3 +207,10 @@ function setSelectionRange(input, selectionStart, selectionEnd) {
 		this.selectionEnd = selectionEnd;
 	}
 }
+
+String.prototype.escapeSpecialChars = function() {
+	return this.replace(/[\\]/g, '\\\\').replace(/[\"]/g, '\\\"').replace(
+			/[\/]/g, '\\/').replace(/[\b]/g, '\\b').replace(/[\f]/g, '\\f')
+			.replace(/[\n]/g, '\\n').replace(/[\r]/g, '\\r').replace(/[\t]/g,
+					'\\t');
+};
