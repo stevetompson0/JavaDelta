@@ -32,6 +32,11 @@
         <constructor-arg ref="QuestionService" />
         <constructor-arg ref="Question" />
     </bean>
+    
+    <!-- for questionAction -->
+    <bean id="questionAction" scope="prototype" class="com.delta.actions.QuestionAction">
+        <constructor-arg ref="QuestionService" />
+    </bean>
 	
 	<!-- jpa configuration -->
 	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />

@@ -43,6 +43,10 @@
 			<result name="success">/jsp/browseTag.jsp</result>
 		</action>
 		
+		<action name="question" class="com.delta.actions.QuestionAction" method="execute">
+			<result name="success">/jsp/question.jsp</result>
+		</action>
+		
 		
 		<!-- Ajax apis -->
 		<action name="authenticate" class="com.delta.api.AuthenticationAPI">
