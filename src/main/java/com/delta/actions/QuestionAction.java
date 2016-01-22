@@ -1,8 +1,10 @@
 package com.delta.actions;
 
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 import com.delta.model.QuestionInterface;
 import com.delta.service.QuestionService;
@@ -41,15 +43,28 @@ public class QuestionAction extends ActionSupport {
     	ByteArrayOutputStream writeTo = new ByteArrayOutputStream();
     	PrintStream out = System.out;
     	System.setOut(new PrintStream(writeTo));
+    	String jsonResult;
     	try
     	{
     		ProblemAPI.mainCall(args);
-    		jsonResponse = new String(writeTo.toByteArray(), java.nio.charset.StandardCharsets.UTF_8);
+    		jsonResult = new String(writeTo.toByteArray(), java.nio.charset.StandardCharsets.UTF_8);
     	}
     	finally
     	{
     	    System.setOut(out);
     	}
+    	
+    	JSONObject result = (JSONObject) JSONValue.parse(jsonResult.replaceAll("\'", "\""));
+    	JSONObject response = new JSONObject();
+    	response.put("hasLogin", true);
+    	response.put("title", question.getTitle());
+    	response.put("content", result.get("BODY").toString());
+    	response.put("hasCode", false);
+    	response.put("code", "");
+    	response.put("answer", result.get("ANSWER").toString());
+    	response.put("tags", "");
+    	response.put("download_link", "");
+    	jsonResponse = response.toString();
 		return SUCCESS;
 	}
 	

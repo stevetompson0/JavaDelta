@@ -140,7 +140,7 @@
 				"TYPE": 1
 			};
 			var data = {
-					jsonData: JSON.stringify(recordData).escapeSpecialChars(), 
+					jsonData: JSON.stringify(recordData), 
 			};
 			if (id) {
 				data['id'] = id;
