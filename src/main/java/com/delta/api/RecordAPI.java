@@ -42,6 +42,19 @@ public class RecordAPI extends ActionSupport{
 		this.service = service;
 	}
 	
+	/**
+	 * set initial question page 
+	 * @return
+	 */
+	public String initial() {
+		if (id != null) {
+			// updating non-exiting question
+			if (this.service.findById(id) == null)
+				id = null;
+		}
+		return SUCCESS;
+	}
+	
 
 	@Override
 	public String execute() {

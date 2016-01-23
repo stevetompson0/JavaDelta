@@ -189,7 +189,8 @@
           </nav>
     </script>
     <script type="text/javascript">
-    	var id = null;
+    	
+    	var id = <s:if test="id==null">null</s:if><s:else><s:property value="id"/></s:else>;
 		var save_url = "<s:url value="/questionSave" />";
 	</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

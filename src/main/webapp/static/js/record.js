@@ -126,15 +126,15 @@
 				options.push($('#optionModal input').eq(i).val());
 			};
 			var recordData = {
-				"TITLE": $('#record-title-edit').text(),
+				"TITLE": $('#record-title-edit').text().escapeSpecialChars(),
 				"TAGS": $('#tag-input').val().split(";"),
 				"PROBLEM": {
 					"VARIABLE": doneVariables,
 					"GENERATOR": generators,
-					"BODY": $('#record-editor').html().replace(/<[^>]*>/g, '$').replace(/&nbsp;/g,''),
-					"ANSWER": $('#answer-textarea').val()
+					"BODY": $('#record-editor').html().replace(/<[^>]*>/g, '$').replace(/&nbsp;/g,'').escapeSpecialChars(),
+					"ANSWER": $('#answer-textarea').val().escapeSpecialChars()
 				},
-				"ORIGINAL_PROBLEM": $('#origin-textarea').val(),
+				"ORIGINAL_PROBLEM": $('#origin-textarea').val().escapeSpecialChars(),
 				"OPTION": options,
 				"CODE": $('#codeModal textarea').val(),
 				"TYPE": 1
