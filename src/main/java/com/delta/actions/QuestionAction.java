@@ -12,6 +12,9 @@ import com.delta.service.QuestionService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.steve.problem.ProblemAPI;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class QuestionAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
@@ -33,8 +36,13 @@ public class QuestionAction extends ActionSupport {
 		this.service = service;
 	}
 	
+	// logger
+	static final Logger LOG = LoggerFactory.getLogger(QuestionAction.class);
+	
 	// executed for retrieve one Question and generate a instance
 	public String execute() {
+		
+		
 		question = service.findById(id);
 		// fetch question instance
 		String[] args = new String[2];

@@ -56,9 +56,9 @@
 					setTimeout(function() {
 						if (a != "" && b != "") {
 							if ($('#collapse' + index + " input").eq(0).parent().hasClass('active')) {
-								$('#formula-line' + index).find('input').val("RandomPackage.RandomNum(" + a + "," + b + ");");
+								$('#formula-line' + index).find('input').val("a"+index + " = RandomPackage.RandomNum(" + a + ", " + b + ");");
 							} else {
-								$('#formula-line' + index).find('input').val("RandomPackage.RandomFloat(" + a + "," + b + ");");
+								$('#formula-line' + index).find('input').val("a"+index + " = RandomPackage.RandomDouble(" + a + ", " + b + ", 2);");
 							}
 						};
 					}, 20);
@@ -72,7 +72,10 @@
 				b = inputs[3].value.replace(/\s/g, "");
 			if (a != "" && b != "") {
 				var variableType = inputs[0].value == "1" ? "Num" : "Float";
-				document.getElementById('formula-line' + index).getElementsByTagName('input')[0].value = "RandomPackage.Random" + variableType + "(" + a + "," + b + ");";
+				if (variableType == "Num")
+					document.getElementById('formula-line' + index).getElementsByTagName('input')[0].value = "a"+index + " = RandomPackage.Random" + variableType + "(" + a + "," + b + ");";
+				else
+					document.getElementById('formula-line' + index).getElementsByTagName('input')[0].value = "a"+index + " = RandomPackage.RandomDouble" + "(" + a + "," + b + ", 2);";
 			};
 		}
 
@@ -124,7 +127,7 @@
 				editor.find('span.label').eq(0).replaceWith(txt);		
 			};
 			for (var i = 0; i < $scope.variables.length; i++) {
-				doneVariables.push(($scope.variables[i].type == 1 ? "integer" : "floating") + " a" + $scope.variables[i].index)
+				doneVariables.push(($scope.variables[i].type == 1 ? "integer" : "double") + " a" + $scope.variables[i].index)
 			};
 			for (var i = 0; i < $('#formula-container1 li').length - 1; i++) {
 				generators.push($('#formula-container1 li').eq(i).find('input').val());

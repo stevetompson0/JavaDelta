@@ -81,7 +81,7 @@
                 
                   <div class="col-lg-8">
                     <ul class="formula-container form-control" id="formula-container1">
-                    	<li ng-repeat="variable in variables" id="formula-line{{variable.index}}"><span>a{{variable.index}} = </span><input type="text"></li>
+                    	<li ng-repeat="variable in variables" id="formula-line{{variable.index}}"><span>a{{variable.index}} : </span><input type="text"></li>
                     	<li><a id="add-formula" ng-click="addFormula()"><i class="fa fa-plus-square-o"></i>Add a new formula</a></li>
                     </ul>
                   </div>
