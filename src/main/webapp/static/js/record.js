@@ -133,15 +133,15 @@
 				options.push($('#optionModal input').eq(i).val());
 			};
 			var recordData = {
-				"TITLE": $('#record-title-edit').text().escapeSpecialChars(),
+				"TITLE": $('#record-title-edit').text(),
 				"TAGS": $('#tag-input').val().split(";"),
 				"PROBLEM": {
 					"VARIABLE": doneVariables,
 					"GENERATOR": generators,
-					"BODY": editor.html().replace(/&nbsp;/g, '').escapeSpecialChars(),
-					"ANSWER": $('#answer-textarea').val().escapeSpecialChars()
+					"BODY": editor.html().replace(/&nbsp;/g, ''),
+					"ANSWER": $('#answer-textarea').val()
 				},
-				"ORIGINAL_PROBLEM": $('#origin-textarea').val().escapeSpecialChars(),
+				"ORIGINAL_PROBLEM": $('#origin-textarea').val(),
 				"OPTION": options,
 				"CODE": $('#codeModal textarea').val(),
 				"TYPE": 1
@@ -215,6 +215,7 @@ function setSelectionRange(input, selectionStart, selectionEnd) {
 	}
 }
 
+//TODO: escape special characters
 String.prototype.escapeSpecialChars = function() {
 	return this.replace(/[\\]/g, '\\\\').replace(/[\"]/g, '\\\"').replace(
 			/[\/]/g, '\\/').replace(/[\b]/g, '\\b').replace(/[\f]/g, '\\f')

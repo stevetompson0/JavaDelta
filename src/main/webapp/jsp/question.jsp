@@ -25,7 +25,7 @@
       <h3>{{question.title}} <small ><a class="tag-link" ng-repeat="tag in question.tags" href="../tag/{{tag}}">{{tag}}</a></small></h3>
     </div>
     <div id="question-content" class="monokai">
-      <p>{{question.content}}</p>
+      <p ng-bind-html="question.content | unsafe">}</p>
       <code class="prettyprint linenums" ng-if="question.hasCode">{{question.code}}</code>     
       <div class="btn-group" role="group" ng-if="question.hasLogin">
         <a type="button" class="btn btn-default" href="{{question.download_link}}" target="_blank"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download as PDF</a>

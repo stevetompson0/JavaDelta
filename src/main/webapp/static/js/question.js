@@ -27,7 +27,11 @@
 		// 	$scope.$apply();
 		// })
 		$scope.question = data;
-	}]);
+	}])
+	
+	.filter('unsafe', function($sce) {
+		return $sce.trustAsHtml;
+	});
 
 
 
