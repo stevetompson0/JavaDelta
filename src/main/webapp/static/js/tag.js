@@ -28,26 +28,21 @@
 		$scope.isSaved = false;
 
 		$scope.enableEdit = function() {
-			$scope.isActive = true;
-			$scope.startEdit = true;
-			$scope.editText = "editing";
+			if (!$scope.startEdit) {
+				$scope.isActive = true;
+				$scope.startEdit = true;
+				$scope.editText = "editing";
+				var editor = new Minislate.simpleEditor(document.getElementById('tag-intro'));
+			};
 		};
 		
-		var editor;		
-		$('#editing').one('click', function(event) {		
-			var defaults = {		
-				editor: document.getElementById('tag-intro'),		
-				debug: false,		
-				list: [		
-					'blockquote', 'h2', 'h3', 'p', 'insertorderedlist', 'insertunorderedlist',		
-					'indent', 'outdent', 'bold', 'italic', 'underline', 'createlink'		
-				],		
-				stay: false		
-			}		
-			editor = new Pen(defaults);		
-		});
-
 		$scope.save = function() {
+			
+			if (document.getElementById('tag-name').innerHTML.trim() == "new tag") {		
+				alert("Please change the tag name before save;")		
+				return null;		
+			};
+			
 			$scope.isSaved = true;
 
 			var tagInfo = {
@@ -81,13 +76,6 @@
 
 	.filter('unsafe', function($sce) {
 		return $sce.trustAsHtml;
-	})
+	});
 
 })()
-
-// not sure why those error messages on console, although it doesn't affect the way it works.
-jQuery(document).ready(function($) {
-	$('#editing').one('click', function(event) {
-		var editor = new Minislate.simpleEditor(document.getElementById('tag-intro'));
-	});
-});

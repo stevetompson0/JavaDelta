@@ -4,36 +4,44 @@
 <!DOCTYPE html>
 <html ng-app="platform-list">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
 	<link rel="stylesheet" href="<s:url value="static/css/bootstrap.min.css" />" >
   	<link rel="stylesheet" href="<s:url value="static/css/font-awesome.min.css" />" >
   	<link rel="stylesheet" href="<s:url value="static/css/style.css" /> " >
  	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="<s:url value="static/js/angular.min.js" />" ></script>
-	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>
-  	<script src="<s:url value="static/js/list.js" />" ></script>
-	<title>Search result</title>
+	<title>Question List</title>
 </head>
 <body>
 	<nav-bar></nav-bar>
-  <div class="container">
-    <div class="col-lg-9" id="question-list" ng-controller="ListCtrl as list">
+  <div class="container" ng-controller="ListCtrl as list">
+  	<div class="col-lg-3 col-lg-push-9">
+		 <div class="filter-container">		
+	        <h4>Filter by tags <small><a href="#" class="pull-right" ng-click="filter('')">clear</a></small></h4>		
+	        <a ng-repeat="tag in tags" href="#" ng-click="filter(tag.name)">		
+	          <span class="label label-default" data-container="body" data-toggle="popover" data-placement="top" data-content="{{tag.abs}}. <a href='{{tag.link}}'>detail</a>" data-html="true" ng-class="{'label-success':activeFilter==tag.name}">{{tag.name}}</span>		
+	        </a>		
+	      </div>		
+	    </div>		
+	<div class="col-lg-9 col-lg-pull-3" id="question-list" >
       <h3>Question List</h3>
       <ul>
-        <li ng-repeat="question in questions">
+        <li ng-repeat="question in questions" ng-show="question.show">
           <h4><a href="{{question.url}}">{{question.title}}</a></h4>
           <p>{{question.desc}} …</p>
           <p>created by <a href="{{question.author_url}}">{{question.author}}</a></p>
           <div class="tag-container">
-            <a href="../tag/{{tag}}" ng-repeat="tag in question.tags"><span class="label label-default">{{tag}} ></span></a>
+            <a href="../tag/{{tag.name}}"ng-repeat="tag in question.tags"><span data-container="body" data-toggle="popover" data-placement="top" data-content="{{tag.abs}}. <a href='{{tag.link}}'> detail</a>" data-html="true"  class="label label-default">{{tag.name}} ></span></a>
           </div>
           <hr>
         </li>
       </ul>
       <div id="loading"><i class="fa fa-spinner fa-pulse"></i>&nbsp;&nbsp;loading...</div>
     </div>
-    <div class="col-lg-3"></div>
   
 </div>
 	<!-- move to html files when fetching from the server -->
@@ -61,5 +69,9 @@
             </div>
           </nav>
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="<s:url value="static/js/angular.min.js" />" ></script>
+	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>
+  	<script src="<s:url value="static/js/list.js" />" ></script>
 </body>
 </html>

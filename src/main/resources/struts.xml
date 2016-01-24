@@ -26,8 +26,8 @@
 			<result>/jsp/index.jsp</result>
 		</action>
 		
-		<action name="list">
-			<result>/jsp/list.jsp</result>
+		<action name="list" class="com.delta.actions.QuestionAction" method="list">
+			<result name="success">/jsp/list.jsp</result>
 		</action>
 		
 		<action name="record" class="com.delta.api.RecordAPI" method="initial">

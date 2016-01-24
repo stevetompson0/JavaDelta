@@ -24,9 +24,9 @@ public interface QuestionService {
 	public QuestionInterface findByHashId(String hashId);
 	
 	// retrieve questions by keywords
-	List<QuestionInterface> findQuestionsByKeyword(String keyword);
+	List<? extends QuestionInterface> findQuestionsByKeyword(String keyword);
 
 	// retrieve all questions
-	List<QuestionInterface> findAllQuestions();
+	List<? extends QuestionInterface> findAllQuestions();
 
 }

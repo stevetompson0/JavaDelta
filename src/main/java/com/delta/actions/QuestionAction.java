@@ -2,6 +2,7 @@ package com.delta.actions;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -25,7 +26,8 @@ public class QuestionAction extends ActionSupport {
 	// response
 	private String jsonResponse;
 	
-	
+	// for question list
+	private List<QuestionInterface> questions;
 	
 	public QuestionAction(QuestionService service) {
 		this.service = service;
@@ -65,6 +67,16 @@ public class QuestionAction extends ActionSupport {
     	response.put("tags", "");
     	response.put("download_link", "");
     	jsonResponse = response.toString();
+		return SUCCESS;
+	}
+	
+	/**
+	 * method used to fetch questions and generate list page
+	 */
+	@SuppressWarnings("unchecked")
+	public String list() {
+		questions = (List<QuestionInterface>) service.findAllQuestions();
+		
 		return SUCCESS;
 	}
 	

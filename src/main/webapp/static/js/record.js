@@ -116,6 +116,13 @@
 			var doneVariables = [],
 				generators = [],
 				options = [];
+				txt = '',		
+				editor = $('#record-editor').clone(),		
+				len = editor.find('span.label').length;		
+			for (var i = 0; i < len; i++) {		
+				txt = "$" + editor.find('span.label').eq(0).text() + "$";		
+				editor.find('span.label').eq(0).replaceWith(txt);		
+			};
 			for (var i = 0; i < $scope.variables.length; i++) {
 				doneVariables.push(($scope.variables[i].type == 1 ? "integer" : "floating") + " a" + $scope.variables[i].index)
 			};
@@ -131,7 +138,7 @@
 				"PROBLEM": {
 					"VARIABLE": doneVariables,
 					"GENERATOR": generators,
-					"BODY": $('#record-editor').html().replace(/<[^>]*>/g, '$').replace(/&nbsp;/g,'').escapeSpecialChars(),
+					"BODY": editor.html().replace(/&nbsp;/g, '').escapeSpecialChars(),
 					"ANSWER": $('#answer-textarea').val().escapeSpecialChars()
 				},
 				"ORIGINAL_PROBLEM": $('#origin-textarea').val().escapeSpecialChars(),

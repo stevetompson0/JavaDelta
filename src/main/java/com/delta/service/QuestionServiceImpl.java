@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.delta.model.Question;
 import com.delta.model.QuestionInterface;
+import com.delta.model.Tag;
 
 
 @Transactional
@@ -60,15 +61,16 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 
 	@Override
-	public List<QuestionInterface> findQuestionsByKeyword(String keyword) {
+	public List<? extends QuestionInterface> findQuestionsByKeyword(String keyword) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<QuestionInterface> findAllQuestions() {
+	public List<? extends QuestionInterface> findAllQuestions() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Question> results = em.createQuery("SELECT t FROM Question t", Question.class).getResultList();
+		return results;
 	}
 
 }
