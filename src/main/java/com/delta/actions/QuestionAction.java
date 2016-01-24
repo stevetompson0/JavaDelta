@@ -73,7 +73,7 @@ public class QuestionAction extends ActionSupport {
     	response.put("code", "");
     	response.put("answer", result.get("ANSWER").toString());
     	response.put("tags", "");
-    	response.put("download_link", "");
+    	response.put("download_link", ".");
     	jsonResponse = response.toString();
 		return SUCCESS;
 	}

@@ -28,8 +28,8 @@
       <p ng-bind-html="question.content | unsafe">}</p>
       <code class="prettyprint linenums" ng-if="question.hasCode">{{question.code}}</code>     
       <div class="btn-group" role="group" ng-if="question.hasLogin">
-        <a type="button" class="btn btn-default" href="{{question.download_link}}" target="_blank"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download as PDF</a>
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#answer-modal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show me answer</button>
+        <a type="button" class="btn btn-default" href="javascript:window.location.href=window.location.href"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Try again</a>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#answer-modal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show me the answer</button>
       </div>
       <div ng-if="!question.hasLogin">Please log in to download the question or check the answer: <a href="index.html" class="">>> Log in.</a></div>
       </div>
