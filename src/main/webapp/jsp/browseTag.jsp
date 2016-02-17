@@ -35,13 +35,13 @@
       <script type="text/ng-template" id="nav.html">
           <nav class="container">
             <div id="nav-container">
-              <div id="logo" class="pull-left"><a href="index.html">
+              <div id="logo" class="pull-left"><a href="<s:url value="/index" />">
                 <strong>{</strong>Algorithm Platform<strong>}</strong>
               </a></div>
               <div class="pull-right">
                     <ul class="top-social no-bottom-margin">
-                      <li><a href="/list.html" title="list of questions" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-th-list"></i></a></li>
-					  <li><a href="<s:url value="tags"/>" title="list of tags" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-tag"></i></a></li>
+                      <li><a href="<s:url value="/list" />" title="list of questions" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-th-list"></i></a></li>
+					  <li><a href="<s:url value="/tags"/>" title="list of tags" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-tag"></i></a></li>
                       <li><a href="#" title="Share by email" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-envelope-o "></i></a></li>
                       <li><a href="#" title="Fork on Github" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-github"></i></a></li>
                     </ul>

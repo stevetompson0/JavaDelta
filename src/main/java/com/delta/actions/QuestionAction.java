@@ -4,6 +4,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -15,7 +19,7 @@ import com.steve.problem.ProblemAPI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class QuestionAction extends ActionSupport {
+public class QuestionAction extends ActionSupport implements ServletRequestAware{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -31,6 +35,8 @@ public class QuestionAction extends ActionSupport {
 	
 	// for question list
 	private List<QuestionInterface> questions;
+	
+	private HttpServletRequest request;
 	
 	public QuestionAction(QuestionService service) {
 		this.service = service;
@@ -85,6 +91,30 @@ public class QuestionAction extends ActionSupport {
 	public String list() {
 		questions = (List<QuestionInterface>) service.findAllQuestions();
 		
+		JSONArray response = new JSONArray();
+		for (QuestionInterface question: questions) {
+			JSONObject questionJson = new JSONObject();
+			questionJson.put("title", question.getTitle());
+			questionJson.put("desc", question.getOriginalBody());
+			questionJson.put("author", "admin");
+			questionJson.put("author_url", "");
+			questionJson.put("url", request.getContextPath() + "/question?id=" + question.getId());
+			questionJson.put("show", true);
+			
+			// add tags
+			JSONArray questionTags = new JSONArray();
+			JSONObject testTag = new JSONObject();
+			testTag.put("name", "math");
+			testTag.put("link", "test link");
+			testTag.put("abs", "test abstract");
+			questionTags.add(testTag);
+			
+			response.add(questionJson);
+			
+		}
+		
+		jsonResponse = response.toString();
+		
 		return SUCCESS;
 	}
 	
@@ -95,6 +125,11 @@ public class QuestionAction extends ActionSupport {
 	
 	public String getJsonResponse() {
 		return this.jsonResponse;
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
 	}
 	
 

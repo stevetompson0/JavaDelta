@@ -36,7 +36,7 @@ public class AuthenticationAPI extends ActionSupport implements SessionAware {
 			user.setPassword(password);
 			session.put("USER", user);
 			errorAuthen = false;
-			loginAs = 1;
+			loginAs = 2;
 		}
 		else {
 			return INPUT;

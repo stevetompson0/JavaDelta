@@ -48,7 +48,7 @@
       <script type="text/ng-template" id="nav.html">
           <nav class="container">
             <div id="nav-container">
-              <div id="logo" class="pull-left"><a href="index.html">
+              <div id="logo" class="pull-left"><a href="<s:url value="/index" />">
                 <strong>{</strong>Algorithm Platform<strong>}</strong>
               </a></div>
               <div class="pull-right">
@@ -68,6 +68,9 @@
                   </div>
             </div>
           </nav>
+    </script>
+    <script>
+    	var questions = <s:property value="jsonResponse" escapeHtml="false"/>;
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="<s:url value="static/js/angular.min.js" />" ></script>
