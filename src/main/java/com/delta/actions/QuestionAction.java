@@ -109,6 +109,8 @@ public class QuestionAction extends ActionSupport implements ServletRequestAware
 			testTag.put("abs", "test abstract");
 			questionTags.add(testTag);
 			
+			questionJson.put("tags", questionTags);
+			
 			response.add(questionJson);
 			
 		}
