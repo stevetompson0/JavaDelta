@@ -74,7 +74,7 @@ public class QuestionAction extends ActionSupport implements ServletRequestAware
     	JSONObject response = new JSONObject();
     	response.put("hasLogin", true);
     	response.put("title", question.getTitle());
-    	response.put("content", result.get("BODY").toString());
+    	response.put("BODY", result.get("BODY").toString());
     	response.put("hasCode", false);
     	response.put("code", "");
     	response.put("answer", result.get("ANSWER").toString());

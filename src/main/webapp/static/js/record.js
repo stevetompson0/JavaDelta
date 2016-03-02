@@ -141,7 +141,7 @@
 				"PROBLEM": {
 					"VARIABLE": doneVariables,
 					"GENERATOR": generators,
-					"BODY": editor.html().replace(/&nbsp;/g, ' '),
+					"BODY": editor.html().split(/\n/).join("<br />").split(/&nbsp;/g).join(' ').split('"').join('\\\\"'),
 					"ANSWER": $('#answer-textarea').val()
 				},
 				"ORIGINAL_PROBLEM": $('#origin-textarea').val(),

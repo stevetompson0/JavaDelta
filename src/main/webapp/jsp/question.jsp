@@ -82,14 +82,16 @@
     <script type="text/javascript">
 		var data = <s:property value="jsonResponse" escapeHtml="false"/>;
 	</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 	<script src="<s:url value="static/js/angular.min.js" />" ></script>
-  	<script src="<s:url value="static/js/question.js" />" ></script>
+	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>
   	<script src="<s:url value="static/js/prettify.js" />" ></script>
-  	<script src="js/JSAV/jquery.transit.js"></script>
-  	<script src="js/JSAV/raphael.js"></script>
-  	<script src="js/JSAV/dagre.min.js"></script>
-  	<script src="js/JSAV/JSAV-min.js"></script>
+  	<script src="<s:url value="static/js/JSAV/jquery.transit.js" />" ></script>
+  	<script src="<s:url value="static/js/JSAV/raphael.js" />" ></script>
+  	<script src="<s:url value="static/js/JSAV/dagre.min.js" />" ></script>
+  	<script src="<s:url value="static/js/JSAV/JSAV-min.js" />" ></script>
+  	<script src="<s:url value="static/js/vizJSAV.js" />" ></script>
+  	<script src="<s:url value="static/js/question.js" />" ></script>
 </body>
 </html>
