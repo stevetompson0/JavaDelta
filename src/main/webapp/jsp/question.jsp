@@ -13,6 +13,7 @@
 	<meta name="keywords" content="">
 	<link rel="stylesheet" href="<s:url value="static/css/bootstrap.min.css" />" >
   	<link rel="stylesheet" href="<s:url value="static/css/font-awesome.min.css" />" >
+  	<link rel="stylesheet" href="<s:url value="static/css/JSAV.css" /> ">
   	<link rel="stylesheet" href="<s:url value="static/css/style.css" /> " >
  	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 	<title>Question</title>
@@ -26,7 +27,11 @@
     </div>
     <div id="question-content" class="monokai">
       <p ng-bind-html="question.content | unsafe">}</p>
-      <code class="prettyprint linenums" ng-if="question.hasCode">{{question.code}}</code>     
+      <code class="prettyprint linenums" ng-if="question.hasCode">{{question.code}}</code> 
+      <div id="av">
+      	<div class="jsavcontrols"></div><span class="jsavcounter"></span>
+      	<p class="jsavoutput jsavline"></p>
+      </div>        
       <div class="btn-group" role="group" ng-if="question.hasLogin">
         <a type="button" class="btn btn-default" href="javascript:window.location.href=window.location.href"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Try again</a>
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#answer-modal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show me the answer</button>
@@ -77,10 +82,14 @@
     <script type="text/javascript">
 		var data = <s:property value="jsonResponse" escapeHtml="false"/>;
 	</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 	<script src="<s:url value="static/js/angular.min.js" />" ></script>
-	<script src="<s:url value="static/js/bootstrap.min.js" />" ></script>
   	<script src="<s:url value="static/js/question.js" />" ></script>
   	<script src="<s:url value="static/js/prettify.js" />" ></script>
+  	<script src="js/JSAV/jquery.transit.js"></script>
+  	<script src="js/JSAV/raphael.js"></script>
+  	<script src="js/JSAV/dagre.min.js"></script>
+  	<script src="js/JSAV/JSAV-min.js"></script>
 </body>
 </html>

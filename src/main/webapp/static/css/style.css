@@ -393,7 +393,6 @@ box-shadow: 5px 5px 5px 1px rgba(175,202,9,0.48);
 .browseTag-list li{
 	list-style: none;
 	margin-top: 30px;
-
 }
 /*question content*/
 .page-header{
@@ -415,7 +414,7 @@ box-shadow: 5px 5px 5px 1px rgba(175,202,9,0.48);
 #question-container h3 small{
 	padding-left: 10px;
 }
-#question-content div{
+#question-content>div{
 	margin-top: 20px;
 }
 a.tag-link{
@@ -440,6 +439,30 @@ a.tag-link:last-child:after{
 }
 #answer-modal .modal-body{
 	white-space: pre-line;
+}
+#av {
+  position: relative;
+  border-radius: 4px;
+  border: 1px solid #555;
+}
+.jsavcounter {
+  position: absolute;
+  top: 15px;
+}
+.jsavcanvas { height: 300px;}
+.visited {
+  background-color: #ddd;
+}
+.processing {
+  border-color: red;
+}
+.finished {
+  background-color: black;
+  color: white;
+}
+.jsavlabel {
+  font-size: 2em;
+  text-align: center;
 }
 /*page:taginfo*/
 .taginfo-container h3>span{
